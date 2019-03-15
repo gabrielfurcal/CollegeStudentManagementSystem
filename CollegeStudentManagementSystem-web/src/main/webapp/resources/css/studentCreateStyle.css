@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 18, 2018, 11:27:15 AM
+    Author     : Gabriel_Liberato
+*/
+#map {
+    height: 20rem;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .col-xl-2 {
+        padding-left:0px !important;
+    }
+}
+
+@media (min-width: 768px){
+.col-md-3 {
+       padding-left:0px !important;
+}
+}
+
+
+@media only screen and (max-width: 1369px) {
+    input[name="telephones"] {
+        max-width: 100% !important;
+    }
+
+    .select-telephone {
+        max-width: 100% !important;
+    }
+
+    #enrollment-year {
+        max-width: 100% !important;
+    }
+
+    input[name="studentId"] {
+        max-width: 100% !important;
+    }
+}
