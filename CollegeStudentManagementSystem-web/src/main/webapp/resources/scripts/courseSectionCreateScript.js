@@ -5,7 +5,11 @@
  */
 
 $(document).ready(() => {
-   $('#tableCoursesSectionsHistoricalInCourseSection').DataTable();
+    let table = $('#tableCoursesSectionsHistoricalInCourseSection');
+
+    if (table !== "undefined" && table !== null && table !== "") {
+        $('#tableCoursesSectionsHistoricalInCourseSection').DataTable();
+    }
 });
 
 $('#campus').change(() => {

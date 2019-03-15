@@ -165,33 +165,15 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="viewHistory">History</label>
+                        <div class="col-md-9">
+                            <a href="${pageContext.servletContext.contextPath}/CoursesSectionsHistorical?id=${courseSection.coursesSectionsPK.courseSectionId}" class="btn btn-primary" name="viewHistory" id="viewHistory" value="${courseSection.courseSectionEndHour}">View history</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-                        
-            <h5 class="form-section"><i class="ft-user"></i> Course sections historical</h5>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <table id="tableCoursesSectionsHistoricalInCourseSection" class="table table-striped table-bordered zero-configuration" style="width:100%;" aria-describedby="tableCoursesSectionsHistoricalInCourseSection_info" role="grid">
-                        <thead>
-                            <tr>
-                                <th>Teacher</th>
-                                <th>Quota</th>
-                                <th>Period</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="courseSectionHistorical2" items="${coursesSectionsHistorical}">
-                                <tr>
-                                    <td>${courseSectionHistorical2.teacher.user.userFirstName} ${courseSectionHistorical2.teacher.user.userFatherLastName} ${courseSectionHistorical2.teacher.user.userMotherLastName}</td>
-                                    <td>${courseSectionHistorical2.courseSectHistQuota.toString()}</td>
-                                    <td>${courseSectionHistorical2.period.periodsPK.periodYear} - 0${courseSectionHistorical2.period.periodsPK.periodQuarter}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
             <br/>
             <div class="form-group row">
                 <div class="col-md-12" style="text-align: right;">

@@ -38,7 +38,7 @@ $('#btnFind').click(() => {
                                                         <td>
                                                             <a href="${$('#contextPath').val()}/CoursesSections/Edit?id=${value.coursesSectionsPK.courseSectionId}">Edit</a> | 
                                                             <a href="${$('#contextPath').val()}/CoursesSections/Details?id=${value.coursesSectionsPK.courseSectionId}">Details</a> | 
-                                                            <a href="${$('#contextPath').val()}/CoursesSections/Historical?id=${value.coursesSectionsPK.courseSectionId}">History</a> | 
+                                                            <a href="${$('#contextPath').val()}/CoursesSectionsHistorical?id=${value.coursesSectionsPK.courseSectionId}">History</a> | 
                                                             <a href="${$('#contextPath').val()}/CoursesSections/Participants?id=${value.coursesSectionsPK.courseSectionId}">Participants</a> 
                                                         </td>
                                                       </tr>`);
