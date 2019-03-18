@@ -33,9 +33,6 @@ public class CourseSectionHistoricalController extends HttpServlet
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private ICourseRepository _courseRepository;
-
-    @Inject
     private ICourseSectionRepository _courseSectionRepository;
 
     @Inject
@@ -46,9 +43,6 @@ public class CourseSectionHistoricalController extends HttpServlet
 
     @Inject
     private IBuildRepository _buildRepository;
-
-    @Inject
-    private IPeriodRepository _periodRepository;
 
     @Inject
     private IClassroomRepository _classroomRepository;
@@ -157,49 +151,18 @@ public class CourseSectionHistoricalController extends HttpServlet
     private void doDetailsGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        String courseSectionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ?
-                request.getAttribute("id").toString() : request.getParameter("id");
+        String courseSectionHitoricalId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
 
-        CourseSection courseSection = this._courseSectionRepository.findCourseSection(new BigDecimal(courseSectionId));
+            CourseSectionHistorical courseSectionHistorical = this._courseSectionHistoricalRepository.findById(new BigDecimal(courseSectionHitoricalId));
 
-        if (courseSection == null)
-            response.sendRedirect(request.getContextPath() + "/CoursesSections");
-        else
-        {
-            List<CourseSectionHistorical> coursesSectionsHistorical =
-                    this._courseSectionHistoricalRepository.findCoursesSectionsHistorical(courseSection);
+            if(courseSectionHistorical == null)
+                response.sendRedirect(request.getContextPath() + "/CoursesSectionsHistorical?id=" + request.getRequestURI().split("=")[1]);
 
-            if (coursesSectionsHistorical.size() < 0)
-                response.sendRedirect(request.getContextPath() + "/CoursesSections");
-
-            request.setAttribute("coursesSectionsHistorical", coursesSectionsHistorical);
-
-            List<Campus> campus = this._campusRepository.findAll();
-            request.setAttribute("campus", campus);
-
-            List<Build> builds =
-                    this._buildRepository.findBuilds(coursesSectionsHistorical.get(0).getClassroom().getBuild().getCampus());
-            request.setAttribute("builds", builds);
-
-            List<Classroom> classrooms =
-                    this._classroomRepository.findClassrooms(coursesSectionsHistorical.get(0).getClassroom().getBuild());
-            request.setAttribute("classrooms", classrooms);
-
-            List<Teacher> teachers = this._teacherRepository.findAll();
-            request.setAttribute("teachers", teachers);
-
-            String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-            List<String> daysOfWeekList = Arrays.asList(daysOfWeek);
-            request.setAttribute("daysOfWeek", daysOfWeekList);
-
-            request.setAttribute("courseSection", courseSection);
-
-            request.setAttribute("courseSectionHistorical", coursesSectionsHistorical.get(0));
+            request.setAttribute("courseSectionHistorical", courseSectionHistorical);
 
             request.setAttribute("simpleDateFormat", new SimpleDateFormat("MM/dd/yyyy"));
 
-            request.getRequestDispatcher("/WEB-INF/coursesSections/details.jsp").forward(request, response);
-        }
+            request.getRequestDispatcher("/WEB-INF/coursesSectionsHistorical/details.jsp").forward(request, response);
     }
 
     /**
