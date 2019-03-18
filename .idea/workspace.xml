@@ -7,27 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7cc1001-3eae-4f9d-b349-97370309313d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/resources/scripts/courseSectionHistoricalIndexScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-ear/target/CollegeStudentManagementSystem-ear-1.0.ear" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-ear/target/CollegeStudentManagementSystem-ear-1.0.ear" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-ear/target/CollegeStudentManagementSystem-ear-1.0/BusinessLogicLayer-ejb-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-ear/target/CollegeStudentManagementSystem-ear-1.0/BusinessLogicLayer-ejb-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-ear/target/CollegeStudentManagementSystem-ear-1.0/CollegeStudentManagementSystem-web-1.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-ear/target/CollegeStudentManagementSystem-ear-1.0/CollegeStudentManagementSystem-web-1.0.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/java/controllers/CourseSectionHistoricalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/java/controllers/CourseSectionHistoricalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSections/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSections/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSections/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSections/edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSectionsHistorical/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSectionsHistorical/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSectionsHistorical/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSectionsHistorical/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/resources/scripts/courseSectionCreateScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/resources/scripts/courseSectionCreateScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/resources/scripts/courseSectionIndexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/resources/scripts/courseSectionIndexScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/classes/controllers/CourseSectionHistoricalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/classes/controllers/CourseSectionHistoricalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/coursesSections/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/coursesSections/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/coursesSections/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/coursesSections/edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/coursesSectionsHistorical/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/WEB-INF/coursesSectionsHistorical/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/resources/scripts/courseSectionCreateScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/resources/scripts/courseSectionCreateScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/resources/scripts/courseSectionIndexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/CollegeStudentManagementSystem-web-1.0/resources/scripts/courseSectionIndexScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/classes/controllers/CourseSectionHistoricalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/CollegeStudentManagementSystem-web/target/classes/controllers/CourseSectionHistoricalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccessLayer-jar/DataAccessLayer-jar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccessLayer-jar/DataAccessLayer-jar.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/DataAccessLayer-jar/target/" />
     <ignored path="$PROJECT_DIR$/BusinessLogicLayer-ejb/target/" />
@@ -41,12 +23,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSectionsHistorical/details.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="40" column="96" selection-start-line="40" selection-start-column="96" selection-end-line="40" selection-end-column="96" />
+            <state relative-caret-position="551">
+              <caret line="54" column="29" lean-forward="true" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -54,12 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/java/controllers/CourseSectionHistoricalController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
-              <folding>
-                <element signature="e#5833#5834#0" expanded="true" />
-                <element signature="e#5875#5876#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2774">
+              <caret line="164" column="76" selection-start-line="164" selection-start-column="76" selection-end-line="164" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -67,12 +45,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataAccessLayer-jar/src/main/java/models/CourseSectionHistorical.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="73" column="36" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="36" />
+            <state relative-caret-position="385">
+              <caret line="77" column="30" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="42" />
               <folding>
                 <element signature="e#5475#5476#0" expanded="true" />
                 <element signature="e#5531#5532#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataAccessLayer-jar/src/main/java/models/CourseSection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="66" column="41" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -129,6 +116,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -136,81 +125,17 @@
               <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CollegeStudentManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CollegeStudentManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="CollegeStudentManagementSystem-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="coursesSectionsHistorical" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552681015753" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552941257519" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -318,7 +243,6 @@
         <option name="COMPATIBILITY" value="false" />
         <option name="VIRTUAL_SERVER" />
         <option name="USERNAME" value="admin" />
-        <option name="CREDENTIAL_ALIAS" />
       </server-settings>
       <predefined_log_file enabled="true" id="GlassFish" />
       <RunnerSettings RunnerId="Debug">
@@ -387,55 +311,56 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552578489867</updated>
-      <workItem from="1552578492340" duration="12329000" />
+      <workItem from="1552578492340" duration="12441000" />
+      <workItem from="1552935809731" duration="3515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12329000" />
+    <option name="totallyTimeSpent" value="15956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Persistence" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Web" side_tool="true" />
-      <window_info id="EJB" side_tool="true" />
-      <window_info id="JavaEE:App" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16257995" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16257995" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32936078" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Persistence" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="UI Designer" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info id="EJB" order="8" side_tool="true" />
+      <window_info id="JavaEE:App" order="9" side_tool="true" />
+      <window_info id="Web" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="JSF" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="CDI" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="JSF" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="CDI" order="10" />
+      <window_info anchor="right" id="Bean Validation" order="11" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,21 +452,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DataAccessLayer-jar/src/main/java/models/CourseSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="66" column="41" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/java/controllers/CourseSectionHistoricalController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
-          <folding>
-            <element signature="e#5833#5834#0" expanded="true" />
-            <element signature="e#5875#5876#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2774">
+          <caret line="164" column="76" selection-start-line="164" selection-start-column="76" selection-end-line="164" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataAccessLayer-jar/src/main/java/models/CourseSectionHistorical.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="73" column="36" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="36" />
+        <state relative-caret-position="385">
+          <caret line="77" column="30" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="42" />
           <folding>
             <element signature="e#5475#5476#0" expanded="true" />
             <element signature="e#5531#5532#0" expanded="true" />
@@ -551,8 +479,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CollegeStudentManagementSystem-web/src/main/webapp/WEB-INF/coursesSectionsHistorical/details.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="40" column="96" selection-start-line="40" selection-start-column="96" selection-end-line="40" selection-end-column="96" />
+        <state relative-caret-position="551">
+          <caret line="54" column="29" lean-forward="true" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
         </state>
       </provider>
     </entry>

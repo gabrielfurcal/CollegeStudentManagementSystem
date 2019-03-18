@@ -162,7 +162,7 @@ public class CourseSectionHistoricalController extends HttpServlet
 
             request.setAttribute("simpleDateFormat", new SimpleDateFormat("MM/dd/yyyy"));
 
-            request.getRequestDispatcher("/WEB-INF/coursesSections/details.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/coursesSectionsHistorical/details.jsp").forward(request, response);
     }
 
     /**

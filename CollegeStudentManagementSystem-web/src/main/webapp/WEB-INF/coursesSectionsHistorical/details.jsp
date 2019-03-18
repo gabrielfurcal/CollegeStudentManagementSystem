@@ -22,13 +22,13 @@
                     <div class="form-group row">
                         <label class="col-md-3 label-control" for="courseName">Couse</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="courseName" id="courseName" value="${courseSectionHistorical.course.courseName}" readonly="readonly"/>
+                            <input type="text" class="form-control" name="courseName" id="courseName" value="${courseSectionHistorical.courseSection.course.courseName}" readonly="readonly"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 label-control" for="courseSection">Section ID</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="courseSection" id="courseSection" value="${courseSectionHistorical.courseSection.courseSectionsPK.courseSectionId}" readonly="readonly"/>
+                            <input type="text" class="form-control" name="courseSection" id="courseSection" value="${courseSectionHistorical.courseSection.coursesSectionsPK.courseSectionId}" readonly="readonly"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -38,15 +38,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 label-control" for="courseSectionEndHour">Teacher</label>
-                        <div class="col-md-9">
-                            <input type="time" class="form-control" name="courseSectionEndHour" id="courseSectionEndHour" value="${courseSection.courseSectionEndHour}" readonly="readonly"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-md-3 label-control" for="courseSectionSchedule">Schedule</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="courseSectionSchedule" id="courseSectionSchedule" value="${courseSectionHistorical.courseSectHistDay} ${courseSectionHistorical.courseSectionStartHour} - ${courseSectionHistorical.courseSectionEndHour}" readonly="readonly"/>
+                            <input type="text" class="form-control" name="courseSectionSchedule" id="courseSectionSchedule" value="${courseSectionHistorical.courseSectHistDay} ${courseSectionHistorical.courseSectHistStartHour} - ${courseSectionHistorical.courseSectHistEndHour}" readonly="readonly"/>
                         </div>
                     </div>
 
@@ -61,7 +55,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 label-control" for="teacher">Teacher</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="teacher" id="teacher" value="${courseSectionHistorical.teacher.user.userFirstName} ${teacher.user.userFatherLastName} ${teacher.user.userMotherLastName}" readonly="readonly"/>
+                            <input type="text" class="form-control" name="teacher" id="teacher" value="${courseSectionHistorical.teacher.user.userFirstName} ${courseSectionHistorical.teacher.user.userFatherLastName} ${courseSectionHistorical.teacher.user.userMotherLastName}" readonly="readonly"/>
                         </div>
                     </div>
                     <div class="form-group row">
