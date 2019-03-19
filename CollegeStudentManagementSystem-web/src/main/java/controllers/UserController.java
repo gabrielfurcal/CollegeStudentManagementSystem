@@ -114,8 +114,14 @@ public class UserController extends HttpServlet implements Serializable
             else if(request.getRequestURI().contains("/Details"))
             {
                 if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Details"))
-                    throw new Exception("User doesn't have permission");
-                
+                {
+                    String urlId = request.getParameter("id") == null || request.getParameter("id").isEmpty() ? request.getAttribute("id").toString() : request.getParameter("id");
+                    String userSessionId = request.getSession(false).getAttribute("userId").toString();
+
+                    if(!urlId.equals(userSessionId))
+                        throw new Exception("User doesn't have permission");
+                }
+
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
