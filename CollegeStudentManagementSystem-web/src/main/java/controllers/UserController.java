@@ -12,7 +12,6 @@ import interfaces.IPositionRepository;
 import interfaces.IRoleRepository;
 import interfaces.ITelephoneRepository;
 import interfaces.ITelephoneTypeRepository;
-import interfaces.IUserGroupRepository;
 import interfaces.IUserRepository;
 import interfaces.IUserRoleRepository;
 import interfaces.IUserTelephoneRepository;
@@ -76,10 +75,7 @@ public class UserController extends HttpServlet implements Serializable
     
     @Inject
     private IGroupRepository _groupRepository;
-    
-    @Inject
-    private IUserGroupRepository _userGroupRepository;
-    
+
     @Inject
     private IPositionRepository _positionRepository;
     
@@ -450,14 +446,19 @@ public class UserController extends HttpServlet implements Serializable
             }
             
             user.setAddress(address);
-            
-            Position position = this._positionRepository.findById(new BigDecimal(request.getParameter("position")));
-            
-            if(position != null)
-                user.setPosition(position);
-            
+
+            String positionId = request.getParameter("position");
+
+            if(!Utility.isNullOrWhiteSpace(positionId))
+            {
+                Position position = this._positionRepository.findById(new BigDecimal(request.getParameter("position")));
+
+                if(position != null)
+                    user.setPosition(position);
+            }
+
             if(!this._userRepository.update(user))
-                throw new Exception("An error has occurred saving the address");
+                throw new Exception("An error has occurred updating the user");
             
             //EMAIL OBJECT
             List<Email> emails = this._emailRepository.findEmails(user);

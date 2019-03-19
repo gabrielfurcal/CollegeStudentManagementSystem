@@ -79,10 +79,10 @@
                                         <%= session.getAttribute("userName").toString()%>
                                     </span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
-                                    <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
+                                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="<%= request.getContextPath() %>/Users/Details?id=<%= session.getAttribute("userId") %>"><i class="ft-user"></i> View profile</a>
+                                    <%--<a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
                                     <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
-                                    <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
+                                    <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>--%>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<%= request.getContextPath() %>/Logout"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </li>
