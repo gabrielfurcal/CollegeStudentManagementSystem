@@ -43,6 +43,7 @@ function allowNewPasswordField() {
         $('#userPassword').removeAttr("disabled");
         $('#newPasswordSetter').val("Unset");
     } else {
+        $('#userPassword').val("");
         $('#userPassword').attr("disabled", "true");
         $('#newPasswordSetter').val("Set");
     }

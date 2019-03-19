@@ -43,7 +43,7 @@ public class Utility
     
     public static boolean isNullOrEmpty(String text)
     {
-        if(text == null || text == "")
+        if(text == null || text.equals(""))
             return true;
         else
             return false;
@@ -51,7 +51,7 @@ public class Utility
     
     public static boolean isNullOrWhiteSpace(String text)
     {
-        if(text == null || text == "" || text == " ")
+        if(text == null || text.equals("") || text.equals(" "))
             return true;
         else
             return false;
