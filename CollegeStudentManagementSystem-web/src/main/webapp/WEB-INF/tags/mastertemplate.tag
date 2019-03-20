@@ -95,22 +95,17 @@
             </div>
         </nav>
         <!-- Sidebar -->
-        <%!
-            @Inject
-            private IPermissionRepository _permissionRespository;
-        %>
         <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
             <div class="main-menu-content">
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="<%= request.getContextPath() %>/Home"><i class="la la-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
                     </li>
-                    <% if(this._permissionRespository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Menu/Academic")) { %>
+
                     <li class=" navigation-header">
                         <span data-i18n="nav.category.academic">Academic</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Academic"></i>
                     </li>
 
-                        <% if(this._permissionRespository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Menu/Academic/Students")) { %>
                         <li class=" nav-item has-sub"><a href="#"><i class="la la-graduation-cap"></i><span class="menu-title" data-i18n="nav.color_palette.main">Students</span></a>
                             <ul class="menu-content">
                                 <li><a class="menu-item" href="<%= request.getContextPath() %>/Students" data-i18n="nav.color_palette.color_palette_primary">All students</a>
@@ -119,9 +114,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <% } %>
 
-                        <%-- if(request.isUserInRole("admin")) { --%>
                         <li class=" nav-item has-sub"><a href="#"><i class="la la-pencil"></i><span class="menu-title" data-i18n="nav.color_palette.main">Teachers</span></a>
                             <ul class="menu-content">
                                 <li><a class="menu-item" href="<%= request.getContextPath() %>/Teachers" data-i18n="nav.color_palette.color_palette_primary">All teachers</a>
@@ -130,8 +123,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <%-- } --%>
-                    <% } %>
 
                     <li class=" navigation-header">
                         <span data-i18n="nav.category.academic">Classes</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Classes"></i>
