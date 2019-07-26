@@ -6,18 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BusinessLogicLayer-ejb" />
         <module name="CollegeStudentManagementSystem-ear" />
         <module name="CollegeStudentManagementSystem-web" />
         <module name="DataAccessLayer-jar" />
+        <module name="BusinessLogicLayer-ejb" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="BusinessLogicLayer-ejb" options="-endorseddirs C:\Users\gabriel_liberato\Documents\SGA\CollegeStudentManagementSystem\BusinessLogicLayer-ejb\target/endorsed" />
-      <module name="CollegeStudentManagementSystem-web" options="-endorseddirs C:\Users\gabriel_liberato\Documents\SGA\CollegeStudentManagementSystem\CollegeStudentManagementSystem-web\target/endorsed" />
-      <module name="DataAccessLayer-jar" options="-endorseddirs C:\Users\gabriel_liberato\Documents\SGA\CollegeStudentManagementSystem\DataAccessLayer-jar\target/endorsed" />
+      <module name="BusinessLogicLayer-ejb" options="-endorseddirs C:\Users\gabriel_liberato\Documents\Knowledge\Java\CollegeStudentManagementSystem\BusinessLogicLayer-ejb\target/endorsed" />
+      <module name="CollegeStudentManagementSystem-web" options="-endorseddirs C:\Users\gabriel_liberato\Documents\Knowledge\Java\CollegeStudentManagementSystem\CollegeStudentManagementSystem-web\target/endorsed" />
+      <module name="DataAccessLayer-jar" options="-endorseddirs C:\Users\gabriel_liberato\Documents\Knowledge\Java\CollegeStudentManagementSystem\DataAccessLayer-jar\target/endorsed" />
     </option>
   </component>
 </project>

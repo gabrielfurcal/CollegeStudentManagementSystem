@@ -200,7 +200,7 @@ public class CourseController extends HttpServlet
             if(Double.parseDouble(request.getParameter("coursePrice")) < 0)
                 throw new Exception("Price in lower than zero");
             
-            course.setCoursePrice(new BigDecimal(request.getParameter("coursePrice")));
+            course.setCoursePrice(Double.parseDouble(request.getParameter("coursePrice")));
             course.setCourseCreationDate(new Date());
             course.setCourseActive((short)1);
 
@@ -257,7 +257,7 @@ public class CourseController extends HttpServlet
             //COURSE OBJECT
             course.setCourseName(request.getParameter("courseName"));
             course.setCourseAmountHours(Short.parseShort(request.getParameter("courseAmountHours")));
-            course.setCoursePrice(new BigDecimal(request.getParameter("coursePrice")));
+            course.setCoursePrice(Double.parseDouble(request.getParameter("coursePrice")));
             
             
             if(!this._courseRepository.update(course))

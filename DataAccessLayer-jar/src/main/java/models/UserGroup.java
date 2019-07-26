@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,10 +43,9 @@ public class UserGroup implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @SequenceGenerator(name="USERS_GROUPS_SEQUENCE", sequenceName = "USERS_GROUPS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_GROUPS_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_GROUP_ID")
-    private BigDecimal userGroupId;
+    private int userGroupId;
     
     @JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")
     @ManyToOne(optional = false)
@@ -59,22 +59,22 @@ public class UserGroup implements Serializable
     {
     }
 
-    public UserGroup(BigDecimal userGroupId)
+    public UserGroup(int userGroupId)
     {
         this.userGroupId = userGroupId;
     }
 
-    public UserGroup(BigDecimal userGroupId, String userUsername, String groupName)
+    public UserGroup(int userGroupId, String userUsername, String groupName)
     {
         this.userGroupId = userGroupId;
     }
 
-    public BigDecimal getUserGroupId()
+    public int getUserGroupId()
     {
         return userGroupId;
     }
 
-    public void setUserGroupId(BigDecimal userGroupId)
+    public void setUserGroupId(int userGroupId)
     {
         this.userGroupId = userGroupId;
     }
@@ -98,29 +98,20 @@ public class UserGroup implements Serializable
     {
         this.user = user;
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (userGroupId != null ? userGroupId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserGroup userGroup = (UserGroup) o;
+        return userGroupId == userGroup.userGroupId &&
+                Objects.equals(group, userGroup.group) &&
+                Objects.equals(user, userGroup.user);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserGroup))
-        {
-            return false;
-        }
-        UserGroup other = (UserGroup) object;
-        if ((this.userGroupId == null && other.userGroupId != null) || (this.userGroupId != null && !this.userGroupId.equals(other.userGroupId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(userGroupId, group, user);
     }
 
     @Override

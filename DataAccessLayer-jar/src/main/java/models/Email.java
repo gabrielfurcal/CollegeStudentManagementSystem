@@ -8,6 +8,7 @@ package models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,10 +49,9 @@ public class Email implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @SequenceGenerator(name="EMAILS_SEQUENCE", sequenceName = "EMAILS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMAILS_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMAIL_ID")
-    private BigDecimal emailId;
+    private int emailId;
     
     @Basic(optional = false)
     @NotNull
@@ -73,24 +73,24 @@ public class Email implements Serializable
     {
     }
 
-    public Email(BigDecimal emailId)
+    public Email(int emailId)
     {
         this.emailId = emailId;
     }
 
-    public Email(BigDecimal emailId, String emailText, Date emailCreationDate)
+    public Email(int emailId, String emailText, Date emailCreationDate)
     {
         this.emailId = emailId;
         this.emailText = emailText;
         this.emailCreationDate = emailCreationDate;
     }
 
-    public BigDecimal getEmailId()
+    public int getEmailId()
     {
         return emailId;
     }
 
-    public void setEmailId(BigDecimal emailId)
+    public void setEmailId(int emailId)
     {
         this.emailId = emailId;
     }
@@ -126,27 +126,19 @@ public class Email implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (emailId != null ? emailId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Email email = (Email) o;
+        return emailId == email.emailId &&
+                Objects.equals(emailText, email.emailText) &&
+                Objects.equals(emailCreationDate, email.emailCreationDate) &&
+                Objects.equals(user, email.user);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Email))
-        {
-            return false;
-        }
-        Email other = (Email) object;
-        if ((this.emailId == null && other.emailId != null) || (this.emailId != null && !this.emailId.equals(other.emailId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(emailId, emailText, emailCreationDate, user);
     }
 
     @Override

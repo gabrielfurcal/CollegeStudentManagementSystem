@@ -75,7 +75,7 @@ public class Student implements Serializable
         this.studentCreationDate = studentCreationDate;
     }
 
-    public Student(String studentId, BigDecimal userId)
+    public Student(String studentId, int userId)
     {
         this.studentsPK = new StudentPK(studentId, userId);
     }

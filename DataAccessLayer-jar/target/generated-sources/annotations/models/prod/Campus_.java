@@ -1,6 +1,5 @@
 package models.prod;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
@@ -10,13 +9,13 @@ import models.Address;
 import models.Build;
 import models.Campus;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-19T09:31:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-07-26T11:40:06")
 @StaticMetamodel(Campus.class)
 public class Campus_ { 
 
     public static volatile SingularAttribute<Campus, Address> address;
     public static volatile SingularAttribute<Campus, String> campusName;
-    public static volatile SingularAttribute<Campus, BigDecimal> campusId;
+    public static volatile SingularAttribute<Campus, Integer> campusId;
     public static volatile ListAttribute<Campus, Build> builds;
     public static volatile SingularAttribute<Campus, Date> campusCreationDate;
 

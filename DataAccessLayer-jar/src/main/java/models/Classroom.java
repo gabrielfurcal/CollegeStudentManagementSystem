@@ -76,7 +76,7 @@ public class Classroom implements Serializable
         this.classroomsPK = classroomsPK;
     }
 
-    public Classroom(BigDecimal classroomId, BigDecimal buildId, BigDecimal campusId)
+    public Classroom(int classroomId, int buildId, int campusId)
     {
         this.classroomsPK = new ClassroomPK(classroomId, buildId, campusId);
     }

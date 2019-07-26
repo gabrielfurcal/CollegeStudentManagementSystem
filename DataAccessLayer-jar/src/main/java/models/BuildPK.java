@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -25,72 +26,56 @@ public class BuildPK implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "BUILD_ID")
-    @SequenceGenerator(name="BUILDS_SEQUENCE", sequenceName = "BUILDS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BUILDS_SEQUENCE")
-    private BigDecimal buildId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int buildId;
     
     @Basic(optional = false)
     @NotNull
     @Column(name = "CAMPUS_ID")
-    private BigDecimal campusId;
+    private int campusId;
 
     public BuildPK()
     {
     }
 
-    public BuildPK(BigDecimal buildId, BigDecimal campusId)
+    public BuildPK(int buildId, int campusId)
     {
         this.buildId = buildId;
         this.campusId = campusId;
     }
 
-    public BigDecimal getBuildId()
+    public int getBuildId()
     {
         return buildId;
     }
 
-    public void setBuildId(BigDecimal buildId)
+    public void setBuildId(int buildId)
     {
         this.buildId = buildId;
     }
 
-    public BigDecimal getCampusId()
+    public int getCampusId()
     {
         return campusId;
     }
 
-    public void setCampusId(BigDecimal campusId)
+    public void setCampusId(int campusId)
     {
         this.campusId = campusId;
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (buildId != null ? buildId.hashCode() : 0);
-        hash += (campusId != null ? campusId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BuildPK buildPK = (BuildPK) o;
+        return buildId == buildPK.buildId &&
+                campusId == buildPK.campusId;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BuildPK))
-        {
-            return false;
-        }
-        BuildPK other = (BuildPK) object;
-        if ((this.buildId == null && other.buildId != null) || (this.buildId != null && !this.buildId.equals(other.buildId)))
-        {
-            return false;
-        }
-        if ((this.campusId == null && other.campusId != null) || (this.campusId != null && !this.campusId.equals(other.campusId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(buildId, campusId);
     }
 
     @Override

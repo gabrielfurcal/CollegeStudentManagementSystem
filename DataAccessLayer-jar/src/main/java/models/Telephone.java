@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,10 +54,9 @@ public class Telephone implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @SequenceGenerator(name="TELEPHONES_SEQUENCE", sequenceName = "TELEPHONES_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TELEPHONES_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TELEPHONE_ID")
-    private BigDecimal telephoneId;
+    private int telephoneId;
     
     @Basic(optional = false)
     @NotNull
@@ -81,24 +81,24 @@ public class Telephone implements Serializable
     {
     }
 
-    public Telephone(BigDecimal telephoneId)
+    public Telephone(int telephoneId)
     {
         this.telephoneId = telephoneId;
     }
 
-    public Telephone(BigDecimal telephoneId, String telephoneNumber, Date telephoneCreationDate)
+    public Telephone(int telephoneId, String telephoneNumber, Date telephoneCreationDate)
     {
         this.telephoneId = telephoneId;
         this.telephoneNumber = telephoneNumber;
         this.telephoneCreationDate = telephoneCreationDate;
     }
 
-    public BigDecimal getTelephoneId()
+    public int getTelephoneId()
     {
         return telephoneId;
     }
 
-    public void setTelephoneId(BigDecimal telephoneId)
+    public void setTelephoneId(int telephoneId)
     {
         this.telephoneId = telephoneId;
     }
@@ -145,27 +145,20 @@ public class Telephone implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (telephoneId != null ? telephoneId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Telephone telephone = (Telephone) o;
+        return telephoneId == telephone.telephoneId &&
+                Objects.equals(telephoneNumber, telephone.telephoneNumber) &&
+                Objects.equals(telephoneCreationDate, telephone.telephoneCreationDate) &&
+                Objects.equals(usersTelephones, telephone.usersTelephones) &&
+                Objects.equals(telephoneType, telephone.telephoneType);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Telephone))
-        {
-            return false;
-        }
-        Telephone other = (Telephone) object;
-        if ((this.telephoneId == null && other.telephoneId != null) || (this.telephoneId != null && !this.telephoneId.equals(other.telephoneId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(telephoneId, telephoneNumber, telephoneCreationDate, usersTelephones, telephoneType);
     }
 
     @Override

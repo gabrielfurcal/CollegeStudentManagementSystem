@@ -38,10 +38,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.noraui</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>12.1.0.2</version>
-            <type>jar</type>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.17</version>
         </dependency>
     </dependencies>
 

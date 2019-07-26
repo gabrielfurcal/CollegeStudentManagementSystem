@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -22,70 +23,55 @@ public class PeriodPK implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "PERIOD_YEAR")
-    private BigDecimal periodYear;
+    private int periodYear;
     
     @Basic(optional = false)
     @NotNull
     @Column(name = "PERIOD_QUARTER")
-    private BigDecimal periodQuarter;
+    private int periodQuarter;
 
     public PeriodPK()
     {
     }
 
-    public PeriodPK(BigDecimal periodYear, BigDecimal periodQuarter)
+    public PeriodPK(int periodYear, int periodQuarter)
     {
         this.periodYear = periodYear;
         this.periodQuarter = periodQuarter;
     }
 
-    public BigDecimal getPeriodYear()
+    public int getPeriodYear()
     {
         return periodYear;
     }
 
-    public void setPeriodYear(BigDecimal periodYear)
+    public void setPeriodYear(int periodYear)
     {
         this.periodYear = periodYear;
     }
 
-    public BigDecimal getPeriodQuarter()
+    public int getPeriodQuarter()
     {
         return periodQuarter;
     }
 
-    public void setPeriodQuarter(BigDecimal periodQuarter)
+    public void setPeriodQuarter(int periodQuarter)
     {
         this.periodQuarter = periodQuarter;
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (periodYear != null ? periodYear.hashCode() : 0);
-        hash += (periodQuarter != null ? periodQuarter.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PeriodPK periodPK = (PeriodPK) o;
+        return periodYear == periodPK.periodYear &&
+                periodQuarter == periodPK.periodQuarter;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PeriodPK))
-        {
-            return false;
-        }
-        PeriodPK other = (PeriodPK) object;
-        if ((this.periodYear == null && other.periodYear != null) || (this.periodYear != null && !this.periodYear.equals(other.periodYear)))
-        {
-            return false;
-        }
-        if ((this.periodQuarter == null && other.periodQuarter != null) || (this.periodQuarter != null && !this.periodQuarter.equals(other.periodQuarter)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(periodYear, periodQuarter);
     }
 
     @Override

@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -25,9 +26,8 @@ public class CourseSectionPK implements Serializable
 {
     @Basic(optional = false)
     @Column(name = "COURSE_SECTION_ID")
-    @SequenceGenerator(name="COURSES_SECTIONS_SEQUENCE", sequenceName = "COURSES_SECTIONS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COURSES_SECTIONS_SEQUENCE")
-    private BigDecimal courseSectionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int courseSectionId;
     
     @Basic(optional = false)
     @NotNull
@@ -39,18 +39,18 @@ public class CourseSectionPK implements Serializable
     {
     }
 
-    public CourseSectionPK(BigDecimal courseSectionId, String courseId)
+    public CourseSectionPK(int courseSectionId, String courseId)
     {
         this.courseSectionId = courseSectionId;
         this.courseId = courseId;
     }
 
-    public BigDecimal getCourseSectionId()
+    public int getCourseSectionId()
     {
         return courseSectionId;
     }
 
-    public void setCourseSectionId(BigDecimal courseSectionId)
+    public void setCourseSectionId(int courseSectionId)
     {
         this.courseSectionId = courseSectionId;
     }
@@ -66,32 +66,17 @@ public class CourseSectionPK implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (courseSectionId != null ? courseSectionId.hashCode() : 0);
-        hash += (courseId != null ? courseId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseSectionPK that = (CourseSectionPK) o;
+        return courseSectionId == that.courseSectionId &&
+                Objects.equals(courseId, that.courseId);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CourseSectionPK))
-        {
-            return false;
-        }
-        CourseSectionPK other = (CourseSectionPK) object;
-        if ((this.courseSectionId == null && other.courseSectionId != null) || (this.courseSectionId != null && !this.courseSectionId.equals(other.courseSectionId)))
-        {
-            return false;
-        }
-        if ((this.courseId == null && other.courseId != null) || (this.courseId != null && !this.courseId.equals(other.courseId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(courseSectionId, courseId);
     }
 
     @Override

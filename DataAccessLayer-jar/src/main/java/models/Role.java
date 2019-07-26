@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,9 +51,8 @@ public class Role implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "ROLE_ID")
-    @SequenceGenerator(name="ROLES_SEQUENCE", sequenceName = "ROLES_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROLES_SEQUENCE")
-    private BigDecimal roleId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int roleId;
     
     @Basic(optional = false)
     @NotNull
@@ -81,23 +81,23 @@ public class Role implements Serializable
     {
     }
 
-    public Role(BigDecimal roleId)
+    public Role(int roleId)
     {
         this.roleId = roleId;
     }
 
-    public Role(BigDecimal roleId, String roleName)
+    public Role(int roleId, String roleName)
     {
         this.roleId = roleId;
         this.roleName = roleName;
     }
 
-    public BigDecimal getRoleId()
+    public int getRoleId()
     {
         return roleId;
     }
 
-    public void setRoleId(BigDecimal roleId)
+    public void setRoleId(int roleId)
     {
         this.roleId = roleId;
     }
@@ -166,27 +166,22 @@ public class Role implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (roleId != null ? roleId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return roleId == role.roleId &&
+                Objects.equals(roleName, role.roleName) &&
+                Objects.equals(roleCreationDate, role.roleCreationDate) &&
+                Objects.equals(roleDescription, role.roleDescription) &&
+                Objects.equals(groupsRoles, role.groupsRoles) &&
+                Objects.equals(rolesPermissions, role.rolesPermissions) &&
+                Objects.equals(usersRoles, role.usersRoles);
     }
-    
+
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Role))
-        {
-            return false;
-        }
-        Role other = (Role) object;
-        if ((this.roleId == null && other.roleId != null) || (this.roleId != null && !this.roleId.equals(other.roleId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(roleId, roleName, roleCreationDate, roleDescription, groupsRoles, rolesPermissions, usersRoles);
     }
 
     @Override

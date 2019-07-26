@@ -285,7 +285,7 @@ public class RoleController extends HttpServlet
             {
                 for (RolePermission oldDefinedPermisison : oldDefinedPermisisons)
                 {
-                    String permissionId = oldDefinedPermisison.getPermission().getPermissionId().toString();
+                    String permissionId = Integer.toString(oldDefinedPermisison.getPermission().getPermissionId());
                     if(!Arrays.asList(permissionsSelected).contains(permissionId))
                     {
                         if(!this._rolePermissionRepository.delete(oldDefinedPermisison))

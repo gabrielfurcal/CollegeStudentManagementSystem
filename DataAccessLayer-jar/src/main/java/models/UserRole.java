@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,9 +44,8 @@ public class UserRole implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "USER_ROLE_ID")
-    @SequenceGenerator(name="USERS_ROLES_SEQUENCE", sequenceName = "USERS_ROLES_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_ROLES_SEQUENCE")
-    private BigDecimal userRoleId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userRoleId;
     
     @JoinColumn(name = "ROLE_ID", referencedColumnName = "ROLE_ID")
     @ManyToOne(optional = false)
@@ -59,22 +59,22 @@ public class UserRole implements Serializable
     {
     }
 
-    public UserRole(BigDecimal userRoleId)
+    public UserRole(int userRoleId)
     {
         this.userRoleId = userRoleId;
     }
 
-    public UserRole(BigDecimal userRoleId, String userUsername, String roleName)
+    public UserRole(int userRoleId, String userUsername, String roleName)
     {
         this.userRoleId = userRoleId;
     }
 
-    public BigDecimal getUserRoleId()
+    public int getUserRoleId()
     {
         return userRoleId;
     }
 
-    public void setUserRoleId(BigDecimal userRoleId)
+    public void setUserRoleId(int userRoleId)
     {
         this.userRoleId = userRoleId;
     }
@@ -98,29 +98,20 @@ public class UserRole implements Serializable
     {
         this.user = user;
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (userRoleId != null ? userRoleId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRole userRole = (UserRole) o;
+        return userRoleId == userRole.userRoleId &&
+                Objects.equals(role, userRole.role) &&
+                Objects.equals(user, userRole.user);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserRole))
-        {
-            return false;
-        }
-        UserRole other = (UserRole) object;
-        if ((this.userRoleId == null && other.userRoleId != null) || (this.userRoleId != null && !this.userRoleId.equals(other.userRoleId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(userRoleId, role, user);
     }
 
     @Override

@@ -10,7 +10,7 @@ import models.Teacher;
 import models.TeacherPK;
 import models.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-19T09:31:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-07-26T11:40:06")
 @StaticMetamodel(Teacher.class)
 public class Teacher_ { 
 

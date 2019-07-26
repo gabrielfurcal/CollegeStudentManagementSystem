@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,10 +53,9 @@ public class Campus implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @SequenceGenerator(name="CAMPUS_SEQUENCE", sequenceName = "CAMPUS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMPUS_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CAMPUS_ID")
-    private BigDecimal campusId;
+    private int campusId;
     
     @Basic(optional = false)
     @NotNull
@@ -78,23 +78,23 @@ public class Campus implements Serializable
     {
     }
 
-    public Campus(BigDecimal campusId)
+    public Campus(int campusId)
     {
         this.campusId = campusId;
     }
 
-    public Campus(BigDecimal campusId, String campusName)
+    public Campus(int campusId, String campusName)
     {
         this.campusId = campusId;
         this.campusName = campusName;
     }
 
-    public BigDecimal getCampusId()
+    public int getCampusId()
     {
         return campusId;
     }
 
-    public void setCampusId(BigDecimal campusId)
+    public void setCampusId(int campusId)
     {
         this.campusId = campusId;
     }
@@ -141,27 +141,20 @@ public class Campus implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (campusId != null ? campusId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campus campus = (Campus) o;
+        return campusId == campus.campusId &&
+                Objects.equals(campusName, campus.campusName) &&
+                Objects.equals(campusCreationDate, campus.campusCreationDate) &&
+                Objects.equals(builds, campus.builds) &&
+                Objects.equals(address, campus.address);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Campus))
-        {
-            return false;
-        }
-        Campus other = (Campus) object;
-        if ((this.campusId == null && other.campusId != null) || (this.campusId != null && !this.campusId.equals(other.campusId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(campusId, campusName, campusCreationDate, builds, address);
     }
 
     @Override

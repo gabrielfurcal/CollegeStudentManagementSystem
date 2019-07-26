@@ -113,7 +113,7 @@ public class PeriodController extends HttpServlet
         
         int[] currentYearAndPeriod = Utility.getCurrentYearAndQuarter();
             
-        Period period = this._periodRepository.findById(new PeriodPK(new BigDecimal(Integer.toString(currentYearAndPeriod[0])), new BigDecimal(Integer.toString(currentYearAndPeriod[1]))));
+        Period period = this._periodRepository.findById(new PeriodPK(currentYearAndPeriod[0],currentYearAndPeriod[1]));
             
         if(period == null)
             request.setAttribute("isCurrentPeriodExist", "false");
@@ -129,14 +129,14 @@ public class PeriodController extends HttpServlet
         {
             int[] currentYearAndPeriod = Utility.getCurrentYearAndQuarter();
             
-            Period restoredPeriod = this._periodRepository.findById(new PeriodPK(new BigDecimal(Integer.toString(currentYearAndPeriod[0])), new BigDecimal(Integer.toString(currentYearAndPeriod[1]))));
+            Period restoredPeriod = this._periodRepository.findById(new PeriodPK(currentYearAndPeriod[0],currentYearAndPeriod[1]));
             
             if(restoredPeriod == null)
             {
                 //PERIOD OBJECT
                 Period period = new Period();
                 period.setPeriodCreationDate(new Date());
-                period.setPeriodsPK(new PeriodPK(new BigDecimal(Integer.toString(currentYearAndPeriod[0])), new BigDecimal(currentYearAndPeriod[1])));
+                period.setPeriodsPK(new PeriodPK(currentYearAndPeriod[0],currentYearAndPeriod[1]));
                 
                 if(!this._periodRepository.save(period))
                    throw new Exception("An error has ocurred saving the period");   

@@ -84,7 +84,7 @@ public class Build implements Serializable
         this.buildCreationDate = buildCreationDate;
     }
 
-    public Build(BigDecimal buildId, BigDecimal campusId)
+    public Build(int buildId, int campusId)
     {
         this.buildsPK = new BuildPK(buildId, campusId);
     }

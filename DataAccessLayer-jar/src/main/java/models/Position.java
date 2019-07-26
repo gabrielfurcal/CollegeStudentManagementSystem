@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,9 +52,8 @@ public class Position implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "POSITION_ID")
-    @SequenceGenerator(name="POSITIONS_SEQUENCE", sequenceName = "POSITIONS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "POSITIONS_SEQUENCE")
-    private BigDecimal positionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int positionId;
     
     @Basic(optional = false)
     @NotNull
@@ -80,12 +80,12 @@ public class Position implements Serializable
     {
     }
 
-    public Position(BigDecimal positionId)
+    public Position(int positionId)
     {
         this.positionId = positionId;
     }
 
-    public Position(BigDecimal positionId, String positionName, String positionDescription, Date positionCreationDate)
+    public Position(int positionId, String positionName, String positionDescription, Date positionCreationDate)
     {
         this.positionId = positionId;
         this.positionName = positionName;
@@ -93,12 +93,12 @@ public class Position implements Serializable
         this.positionCreationDate = positionCreationDate;
     }
 
-    public BigDecimal getPositionId()
+    public int getPositionId()
     {
         return positionId;
     }
 
-    public void setPositionId(BigDecimal positionId)
+    public void setPositionId(int positionId)
     {
         this.positionId = positionId;
     }
@@ -145,27 +145,20 @@ public class Position implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (positionId != null ? positionId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return positionId == position.positionId &&
+                Objects.equals(positionName, position.positionName) &&
+                Objects.equals(positionDescription, position.positionDescription) &&
+                Objects.equals(positionCreationDate, position.positionCreationDate) &&
+                Objects.equals(users, position.users);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Position))
-        {
-            return false;
-        }
-        Position other = (Position) object;
-        if ((this.positionId == null && other.positionId != null) || (this.positionId != null && !this.positionId.equals(other.positionId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(positionId, positionName, positionDescription, positionCreationDate, users);
     }
 
     @Override

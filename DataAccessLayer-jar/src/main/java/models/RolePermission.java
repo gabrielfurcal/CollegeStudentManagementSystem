@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,9 +44,8 @@ public class RolePermission implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "ROLE_PERMISSION_ID")
-    @SequenceGenerator(name="ROLES_PERMISSIONS_SEQUENCE", sequenceName = "ROLES_PERMISSIONS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROLES_PERMISSIONS_SEQUENCE")
-    private BigDecimal rolePermissionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int rolePermissionId;
     
     @JoinColumn(name = "PERMISSION_ID", referencedColumnName = "PERMISSION_ID")
     @ManyToOne(optional = false)
@@ -59,22 +59,22 @@ public class RolePermission implements Serializable
     {
     }
 
-    public RolePermission(BigDecimal rolePermissionId)
+    public RolePermission(int rolePermissionId)
     {
         this.rolePermissionId = rolePermissionId;
     }
 
-    public RolePermission(BigDecimal rolePermissionId, String roleName, String permissionName)
+    public RolePermission(int rolePermissionId, String roleName, String permissionName)
     {
         this.rolePermissionId = rolePermissionId;
     }
 
-    public BigDecimal getRolePermissionId()
+    public int getRolePermissionId()
     {
         return rolePermissionId;
     }
 
-    public void setRolePermissionId(BigDecimal rolePermissionId)
+    public void setRolePermissionId(int rolePermissionId)
     {
         this.rolePermissionId = rolePermissionId;
     }
@@ -98,29 +98,20 @@ public class RolePermission implements Serializable
     {
         this.role = role;
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (rolePermissionId != null ? rolePermissionId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RolePermission that = (RolePermission) o;
+        return rolePermissionId == that.rolePermissionId &&
+                Objects.equals(permission, that.permission) &&
+                Objects.equals(role, that.role);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RolePermission))
-        {
-            return false;
-        }
-        RolePermission other = (RolePermission) object;
-        if ((this.rolePermissionId == null && other.rolePermissionId != null) || (this.rolePermissionId != null && !this.rolePermissionId.equals(other.rolePermissionId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(rolePermissionId, permission, role);
     }
 
     @Override

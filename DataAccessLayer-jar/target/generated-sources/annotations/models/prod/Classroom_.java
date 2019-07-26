@@ -10,7 +10,7 @@ import models.Classroom;
 import models.ClassroomPK;
 import models.CourseSectionHistorical;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-19T09:31:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-07-26T11:40:06")
 @StaticMetamodel(Classroom.class)
 public class Classroom_ { 
 

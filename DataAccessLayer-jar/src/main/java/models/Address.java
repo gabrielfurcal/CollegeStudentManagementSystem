@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,9 +56,8 @@ public class Address implements Serializable
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Column(name = "ADDRESS_ID")
-    @SequenceGenerator(name="ADDRESSES_SEQUENCE", sequenceName = "ADDRESSES_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESSES_SEQUENCE")
-    private BigDecimal addressId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int addressId;
     
     @Basic(optional = false)
     @NotNull
@@ -112,12 +112,13 @@ public class Address implements Serializable
     {
     }
 
-    public Address(BigDecimal addressId)
+    public Address(int addressId)
     {
         this.addressId = addressId;
     }
 
-    public Address(BigDecimal addressId, String addressStreetAndNumber, String addressSector, String addressMunicipality, String addressProvince, Date addressCreationDate)
+    public Address(int addressId, String addressStreetAndNumber, String addressSector, String addressMunicipality,
+                   String addressProvince, Date addressCreationDate)
     {
         this.addressId = addressId;
         this.addressStreetAndNumber = addressStreetAndNumber;
@@ -127,12 +128,12 @@ public class Address implements Serializable
         this.addressCreationDate = addressCreationDate;
     }
 
-    public BigDecimal getAddressId()
+    public int getAddressId()
     {
         return addressId;
     }
 
-    public void setAddressId(BigDecimal addressId)
+    public void setAddressId(int addressId)
     {
         this.addressId = addressId;
     }
@@ -240,27 +241,27 @@ public class Address implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (addressId != null ? addressId.hashCode() : 0);
-        return hash;
+    public int hashCode() {
+        return Objects.hash(addressId, addressStreetAndNumber, addressNeighborhood, addressSector,
+                addressMunicipality, addressProvince, addressLatitude, addressLongitude, addressCreationDate, campus, users);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address))
-        {
-            return false;
-        }
-        Address other = (Address) object;
-        if ((this.addressId == null && other.addressId != null) || (this.addressId != null && !this.addressId.equals(other.addressId)))
-        {
-            return false;
-        }
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return addressId == address.addressId &&
+                Objects.equals(addressStreetAndNumber, address.addressStreetAndNumber) &&
+                Objects.equals(addressNeighborhood, address.addressNeighborhood) &&
+                Objects.equals(addressSector, address.addressSector) &&
+                Objects.equals(addressMunicipality, address.addressMunicipality) &&
+                Objects.equals(addressProvince, address.addressProvince) &&
+                Objects.equals(addressLatitude, address.addressLatitude) &&
+                Objects.equals(addressLongitude, address.addressLongitude) &&
+                Objects.equals(addressCreationDate, address.addressCreationDate) &&
+                Objects.equals(campus, address.campus) &&
+                Objects.equals(users, address.users);
     }
 
     @Override

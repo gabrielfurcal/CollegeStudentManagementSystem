@@ -65,6 +65,7 @@ public class CourseSection implements Serializable
     @Size(min = 1, max = 10)
     @Column(name = "COURSE_SECTION_START_HOUR")
     private String courseSectionStartHour;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -98,7 +99,7 @@ public class CourseSection implements Serializable
         this.courseSectionCreationDate = courseSectionCreationDate;
     }
 
-    public CourseSection(BigDecimal courseSectionId, String courseId)
+    public CourseSection(int courseSectionId, String courseId)
     {
         this.coursesSectionsPK = new CourseSectionPK(courseSectionId, courseId);
     }

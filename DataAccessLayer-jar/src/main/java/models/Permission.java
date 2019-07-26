@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,9 +51,8 @@ public class Permission implements Serializable
     @Id
     @Basic(optional = false)
     @Column(name = "PERMISSION_ID")
-    @SequenceGenerator(name="PERMISSIONS_SEQUENCE", sequenceName = "PERMISSIONS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERMISSIONS_SEQUENCE")
-    private BigDecimal permissionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int permissionId;
     
     @Basic(optional = false)
     @NotNull
@@ -81,24 +81,24 @@ public class Permission implements Serializable
     {
     }
 
-    public Permission(BigDecimal permissionId)
+    public Permission(int permissionId)
     {
         this.permissionId = permissionId;
     }
 
-    public Permission(BigDecimal permissionId, String permissionName, Date permissionCreationDate)
+    public Permission(int permissionId, String permissionName, Date permissionCreationDate)
     {
         this.permissionId = permissionId;
         this.permissionName = permissionName;
         this.permissionCreationDate = permissionCreationDate;
     }
 
-    public BigDecimal getPermissionId()
+    public int getPermissionId()
     {
         return permissionId;
     }
 
-    public void setPermissionId(BigDecimal permissionId)
+    public void setPermissionId(int permissionId)
     {
         this.permissionId = permissionId;
     }
@@ -155,27 +155,21 @@ public class Permission implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (permissionId != null ? permissionId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Permission that = (Permission) o;
+        return permissionId == that.permissionId &&
+                Objects.equals(permissionName, that.permissionName) &&
+                Objects.equals(permissionCreationDate, that.permissionCreationDate) &&
+                Objects.equals(permissionDescription, that.permissionDescription) &&
+                Objects.equals(permissionUrl, that.permissionUrl) &&
+                Objects.equals(rolesPermissions, that.rolesPermissions);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permission))
-        {
-            return false;
-        }
-        Permission other = (Permission) object;
-        if ((this.permissionId == null && other.permissionId != null) || (this.permissionId != null && !this.permissionId.equals(other.permissionId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(permissionId, permissionName, permissionCreationDate, permissionDescription, permissionUrl, rolesPermissions);
     }
 
     @Override

@@ -69,7 +69,7 @@ public class Period implements Serializable
         this.periodCreationDate = periodCreationDate;
     }
 
-    public Period(BigDecimal periodYear, BigDecimal periodMonth)
+    public Period(int periodYear, int periodMonth)
     {
         this.periodsPK = new PeriodPK(periodYear, periodMonth);
     }

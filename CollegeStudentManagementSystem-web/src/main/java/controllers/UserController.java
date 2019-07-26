@@ -415,7 +415,7 @@ public class UserController extends HttpServlet implements Serializable
             {
                 for (UserRole oldDefinedRole : oldDefinedRoles)
                 {
-                    if(!Arrays.asList(rolesSelected).contains(oldDefinedRole.getRole().getRoleId().toString()))
+                    if(!Arrays.asList(rolesSelected).contains(Integer.toString(oldDefinedRole.getRole().getRoleId())))
                     {
                         if(!this._userRoleRepository.delete(oldDefinedRole))
                             throw new Exception("An error has been occured deleting the userRole");

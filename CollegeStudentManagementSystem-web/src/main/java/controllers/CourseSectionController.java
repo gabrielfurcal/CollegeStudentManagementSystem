@@ -275,15 +275,15 @@ public class CourseSectionController extends HttpServlet
 
             CourseSectionHistorical courseSectionHistorical = new CourseSectionHistorical();
             courseSectionHistorical.setCourseSectHistPrice(courseSection.getCourse().getCoursePrice());
-            courseSectionHistorical.setCourseSectHistQuota(new BigDecimal(request.getParameter("quota")));
+            courseSectionHistorical.setCourseSectHistQuota(Integer.parseInt(request.getParameter("quota")));
             courseSectionHistorical.setCourseSectHistCreationDate(new Date());
             courseSectionHistorical.setCourseSection(courseSection);
 
             int[] currentYearAndQuarter = Utility.getCurrentYearAndQuarter();
 
             PeriodPK periodsPK = new PeriodPK();
-            periodsPK.setPeriodYear(new BigDecimal(Integer.toString(currentYearAndQuarter[0])));
-            periodsPK.setPeriodQuarter(new BigDecimal(Integer.toString(currentYearAndQuarter[1])));
+            periodsPK.setPeriodYear(currentYearAndQuarter[0]);
+            periodsPK.setPeriodQuarter(currentYearAndQuarter[1]);
 
             Period period = this._periodRepository.findById(periodsPK);
 
@@ -396,7 +396,7 @@ public class CourseSectionController extends HttpServlet
                 throw new Exception("CourseSectionHistorical does not exist");
 
             int storedLastPeriodSum =
-                    Integer.parseInt(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear().toString()) + Integer.parseInt(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodQuarter().toString());
+                    Integer.parseInt(Integer.toString(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear())) + Integer.parseInt(Integer.toString(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodQuarter()));
 
             int currentPeriodSum = Utility.getCurrentYearAndQuarter()[0] + Utility.getCurrentYearAndQuarter()[1];
 
@@ -404,15 +404,15 @@ public class CourseSectionController extends HttpServlet
             {
                 CourseSectionHistorical newCourseSectionHistorical = new CourseSectionHistorical();
                 newCourseSectionHistorical.setCourseSectHistPrice(courseSection.getCourse().getCoursePrice());
-                newCourseSectionHistorical.setCourseSectHistQuota(new BigDecimal(request.getParameter("quota")));
+                newCourseSectionHistorical.setCourseSectHistQuota(Integer.parseInt(request.getParameter("quota")));
                 newCourseSectionHistorical.setCourseSectHistCreationDate(new Date());
                 newCourseSectionHistorical.setCourseSection(courseSection);
 
                 int[] currentYearAndQuarter = Utility.getCurrentYearAndQuarter();
 
                 PeriodPK periodsPK = new PeriodPK();
-                periodsPK.setPeriodYear(new BigDecimal(Integer.toString(currentYearAndQuarter[0])));
-                periodsPK.setPeriodQuarter(new BigDecimal(Integer.toString(currentYearAndQuarter[1])));
+                periodsPK.setPeriodYear(currentYearAndQuarter[0]);
+                periodsPK.setPeriodQuarter(currentYearAndQuarter[1]);
 
                 Period period = this._periodRepository.findById(periodsPK);
 
@@ -606,11 +606,11 @@ public class CourseSectionController extends HttpServlet
 
         int[] periodAndQuarter = Utility.getCurrentYearAndQuarter();
 
-        BigDecimal currentCourseSectionHistoricalId = BigDecimal.ZERO;
+        int currentCourseSectionHistoricalId = 0;
 
         for (CourseSectionHistorical courseSectionHistorical : courseSectionsHistorical)
         {
-            String dbYear = courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear().toString();
+            String dbYear = Integer.toString(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear());
             String currentYear = new BigDecimal(periodAndQuarter[0]).toString();
 
             String dbQuarter = new BigDecimal(periodAndQuarter[1]).toString();

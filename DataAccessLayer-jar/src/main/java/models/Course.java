@@ -61,7 +61,7 @@ public class Course implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "COURSE_PRICE")
-    private BigDecimal coursePrice;
+    private double coursePrice;
     
     @Basic(optional = false)
     @NotNull
@@ -75,7 +75,7 @@ public class Course implements Serializable
     private short courseActive;
     
     @Column(name = "COURSE_AMOUNT_HOURS")
-    private Short courseAmountHours;
+    private short courseAmountHours;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private List<CourseSection> coursesSections;
@@ -89,7 +89,7 @@ public class Course implements Serializable
         this.courseId = courseId;
     }
 
-    public Course(String courseId, String courseName, BigDecimal coursePrice, Date courseCreationDate)
+    public Course(String courseId, String courseName, double coursePrice, Date courseCreationDate)
     {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -117,12 +117,12 @@ public class Course implements Serializable
         this.courseName = courseName.toUpperCase();
     }
 
-    public BigDecimal getCoursePrice()
+    public double getCoursePrice()
     {
         return coursePrice;
     }
 
-    public void setCoursePrice(BigDecimal coursePrice)
+    public void setCoursePrice(double coursePrice)
     {
         this.coursePrice = coursePrice;
     }

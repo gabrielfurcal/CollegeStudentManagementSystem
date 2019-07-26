@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,10 +44,9 @@ public class ClassParticipant implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @SequenceGenerator(name="CLASS_PARTICIPANTS_SEQUENCE", sequenceName = "CLASS_PARTICIPANTS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLASS_PARTICIPANTS_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CLASS_PARTICIPANT_ID")
-    private BigDecimal classParticipantId;
+    private int classParticipantId;
     
     @JoinColumn(name = "COURSE_SECT_HIST_ID", referencedColumnName = "COURSE_SECT_HIST_ID")
     @ManyToOne(optional = false)
@@ -64,17 +64,17 @@ public class ClassParticipant implements Serializable
     {
     }
 
-    public ClassParticipant(BigDecimal classParticipantId)
+    public ClassParticipant(int classParticipantId)
     {
         this.classParticipantId = classParticipantId;
     }
 
-    public BigDecimal getClassParticipantId()
+    public int getClassParticipantId()
     {
         return classParticipantId;
     }
 
-    public void setClassParticipantId(BigDecimal classParticipantId)
+    public void setClassParticipantId(int classParticipantId)
     {
         this.classParticipantId = classParticipantId;
     }
@@ -100,27 +100,18 @@ public class ClassParticipant implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (classParticipantId != null ? classParticipantId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClassParticipant that = (ClassParticipant) o;
+        return classParticipantId == that.classParticipantId &&
+                Objects.equals(courseSectHist, that.courseSectHist) &&
+                Objects.equals(student, that.student);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ClassParticipant))
-        {
-            return false;
-        }
-        ClassParticipant other = (ClassParticipant) object;
-        if ((this.classParticipantId == null && other.classParticipantId != null) || (this.classParticipantId != null && !this.classParticipantId.equals(other.classParticipantId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(classParticipantId, courseSectHist, student);
     }
 
     @Override

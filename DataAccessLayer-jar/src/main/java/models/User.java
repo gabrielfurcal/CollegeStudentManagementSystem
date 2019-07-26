@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,9 +57,8 @@ public class User implements Serializable
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Column(name = "USER_ID")
-    @SequenceGenerator(name="USERS_SEQUENCE", sequenceName = "USERS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQUENCE")
-    private BigDecimal userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userId;
     
     @Basic(optional = false)
     @NotNull
@@ -115,12 +115,13 @@ public class User implements Serializable
     {
     }
 
-    public User(BigDecimal userId)
+    public User(int userId)
     {
         this.userId = userId;
     }
 
-    public User(BigDecimal userId, String userFirstName, String userFatherLastName, String userUsername, String userPassword, Date userCreationDate)
+    public User(int userId, String userFirstName, String userFatherLastName, String userUsername, String userPassword,
+                Date userCreationDate)
     {
         this.userId = userId;
         this.userFirstName = userFirstName;
@@ -130,12 +131,12 @@ public class User implements Serializable
         this.userCreationDate = userCreationDate;
     }
 
-    public BigDecimal getUserId()
+    public int getUserId()
     {
         return userId;
     }
 
-    public void setUserId(BigDecimal userId)
+    public void setUserId(int userId)
     {
         this.userId = userId;
     }
@@ -252,29 +253,29 @@ public class User implements Serializable
     {
         this.usersRoles = usersRoles;
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (userId != null ? userId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId == user.userId &&
+                Objects.equals(userFirstName, user.userFirstName) &&
+                Objects.equals(userFatherLastName, user.userFatherLastName) &&
+                Objects.equals(userMotherLastName, user.userMotherLastName) &&
+                Objects.equals(userUsername, user.userUsername) &&
+                Objects.equals(userPassword, user.userPassword) &&
+                Objects.equals(userCreationDate, user.userCreationDate) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(position, user.position) &&
+                Objects.equals(students, user.students) &&
+                Objects.equals(usersGroups, user.usersGroups) &&
+                Objects.equals(usersRoles, user.usersRoles);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User))
-        {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(userId, userFirstName, userFatherLastName, userMotherLastName, userUsername, userPassword, userCreationDate, address, position, students, usersGroups, usersRoles);
     }
 
     @Override

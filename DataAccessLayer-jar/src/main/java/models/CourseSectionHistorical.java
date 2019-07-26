@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,21 +54,19 @@ public class CourseSectionHistorical implements Serializable
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @SequenceGenerator(name="COURSES_SECT_HIST_SEQUENCE", sequenceName = "COURSES_SECT_HIST_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COURSES_SECT_HIST_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COURSE_SECT_HIST_ID")
-    private BigDecimal courseSectHistId;
-    
-    
+    private int courseSectHistId;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "COURSE_SECT_HIST_PRICE")
-    private BigDecimal courseSectHistPrice;
+    private double courseSectHistPrice;
     
     @Basic(optional = false)
     @NotNull
     @Column(name = "COURSE_SECT_HIST_QUOTA")
-    private BigDecimal courseSectHistQuota;
+    private int courseSectHistQuota;
     
     @Size(max = 3)
     @Column(name = "COURSE_SECT_HIST_DAY")
@@ -127,12 +126,13 @@ public class CourseSectionHistorical implements Serializable
     {
     }
 
-    public CourseSectionHistorical(BigDecimal courseSectHistId)
+    public CourseSectionHistorical(int courseSectHistId)
     {
         this.courseSectHistId = courseSectHistId;
     }
 
-    public CourseSectionHistorical(BigDecimal courseSectHistId, BigDecimal courseSectHistQuota, BigDecimal courseSectHistPrice, Date courseSectHistCreationDate)
+    public CourseSectionHistorical(int courseSectHistId, int courseSectHistQuota, int courseSectHistPrice
+            , Date courseSectHistCreationDate)
     {
         this.courseSectHistId = courseSectHistId;
         this.courseSectHistQuota = courseSectHistQuota;
@@ -140,32 +140,32 @@ public class CourseSectionHistorical implements Serializable
         this.courseSectHistCreationDate = courseSectHistCreationDate;
     }
 
-    public BigDecimal getCourseSectHistId()
+    public int getCourseSectHistId()
     {
         return courseSectHistId;
     }
 
-    public void setCourseSectHistId(BigDecimal courseSectHistId)
+    public void setCourseSectHistId(int courseSectHistId)
     {
         this.courseSectHistId = courseSectHistId;
     }
 
-    public BigDecimal getCourseSectHistQuota()
+    public int getCourseSectHistQuota()
     {
         return courseSectHistQuota;
     }
 
-    public void setCourseSectHistQuota(BigDecimal courseSectHistQuota)
+    public void setCourseSectHistQuota(int courseSectHistQuota)
     {
         this.courseSectHistQuota = courseSectHistQuota;
     }
 
-    public BigDecimal getCourseSectHistPrice()
+    public double getCourseSectHistPrice()
     {
         return courseSectHistPrice;
     }
 
-    public void setCourseSectHistPrice(BigDecimal courseSectHistPrice)
+    public void setCourseSectHistPrice(double courseSectHistPrice)
     {
         this.courseSectHistPrice = courseSectHistPrice;
     }
@@ -262,27 +262,28 @@ public class CourseSectionHistorical implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (courseSectHistId != null ? courseSectHistId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseSectionHistorical that = (CourseSectionHistorical) o;
+        return courseSectHistId == that.courseSectHistId &&
+                courseSectHistPrice == that.courseSectHistPrice &&
+                courseSectHistQuota == that.courseSectHistQuota &&
+                Objects.equals(courseSectHistDay, that.courseSectHistDay) &&
+                Objects.equals(courseSectHistStartHour, that.courseSectHistStartHour) &&
+                Objects.equals(courseSectHistEndHour, that.courseSectHistEndHour) &&
+                Objects.equals(courseSectHistCreationDate, that.courseSectHistCreationDate) &&
+                Objects.equals(classParticipants, that.classParticipants) &&
+                Objects.equals(classroom, that.classroom) &&
+                Objects.equals(courseSection, that.courseSection) &&
+                Objects.equals(period, that.period) &&
+                Objects.equals(teacher, that.teacher);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CourseSectionHistorical))
-        {
-            return false;
-        }
-        CourseSectionHistorical other = (CourseSectionHistorical) object;
-        if ((this.courseSectHistId == null && other.courseSectHistId != null) || (this.courseSectHistId != null && !this.courseSectHistId.equals(other.courseSectHistId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(courseSectHistId, courseSectHistPrice, courseSectHistQuota, courseSectHistDay,
+                courseSectHistStartHour, courseSectHistEndHour, courseSectHistCreationDate, classParticipants, classroom, courseSection, period, teacher);
     }
 
     @Override

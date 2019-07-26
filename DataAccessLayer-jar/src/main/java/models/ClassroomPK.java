@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -26,93 +27,73 @@ public class ClassroomPK implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "CLASSROOM_ID")
-    @SequenceGenerator(name="CLASSROOMS_SEQUENCE", sequenceName = "CLASSROOMS_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLASSROOMS_SEQUENCE")
-    private BigDecimal classroomId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int classroomId;
     
     @Basic(optional = false)
     @NotNull
     @Column(name = "BUILD_ID")
-    private BigDecimal buildId;
+    private int buildId;
     
     @Basic(optional = false)
     @NotNull
     @Column(name = "CAMPUS_ID")
-    private BigDecimal campusId;
+    private int campusId;
 
     public ClassroomPK()
     {
     }
 
-    public ClassroomPK(BigDecimal classroomId, BigDecimal buildId, BigDecimal campusId)
+    public ClassroomPK(int classroomId, int buildId, int campusId)
     {
         this.classroomId = classroomId;
         this.buildId = buildId;
         this.campusId = campusId;
     }
 
-    public BigDecimal getClassroomId()
+    public int getClassroomId()
     {
         return classroomId;
     }
 
-    public void setClassroomId(BigDecimal classroomId)
+    public void setClassroomId(int classroomId)
     {
         this.classroomId = classroomId;
     }
 
-    public BigDecimal getBuildId()
+    public int getBuildId()
     {
         return buildId;
     }
 
-    public void setBuildId(BigDecimal buildId)
+    public void setBuildId(int buildId)
     {
         this.buildId = buildId;
     }
 
-    public BigDecimal getCampusId()
+    public int getCampusId()
     {
         return campusId;
     }
 
-    public void setCampusId(BigDecimal campusId)
+    public void setCampusId(int campusId)
     {
         this.campusId = campusId;
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (classroomId != null ? classroomId.hashCode() : 0);
-        hash += (buildId != null ? buildId.hashCode() : 0);
-        hash += (campusId != null ? campusId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClassroomPK that = (ClassroomPK) o;
+        return classroomId == that.classroomId &&
+                buildId == that.buildId &&
+                campusId == that.campusId;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ClassroomPK))
-        {
-            return false;
-        }
-        ClassroomPK other = (ClassroomPK) object;
-        if ((this.classroomId == null && other.classroomId != null) || (this.classroomId != null && !this.classroomId.equals(other.classroomId)))
-        {
-            return false;
-        }
-        if ((this.buildId == null && other.buildId != null) || (this.buildId != null && !this.buildId.equals(other.buildId)))
-        {
-            return false;
-        }
-        if ((this.campusId == null && other.campusId != null) || (this.campusId != null && !this.campusId.equals(other.campusId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(classroomId, buildId, campusId);
     }
 
     @Override

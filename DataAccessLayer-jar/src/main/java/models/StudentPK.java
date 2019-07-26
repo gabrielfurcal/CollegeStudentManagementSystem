@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -29,13 +30,13 @@ public class StudentPK implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "USER_ID")
-    private BigDecimal userId;
+    private int userId;
 
     public StudentPK()
     {
     }
 
-    public StudentPK(String studentId, BigDecimal userId)
+    public StudentPK(String studentId, int userId)
     {
         this.studentId = studentId;
         this.userId = userId;
@@ -51,43 +52,28 @@ public class StudentPK implements Serializable
         this.studentId = studentId;
     }
 
-    public BigDecimal getUserId()
+    public int getUserId()
     {
         return userId;
     }
 
-    public void setUserId(BigDecimal userId)
+    public void setUserId(int userId)
     {
         this.userId = userId;
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (studentId != null ? studentId.hashCode() : 0);
-        hash += (userId != null ? userId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentPK studentPK = (StudentPK) o;
+        return userId == studentPK.userId &&
+                Objects.equals(studentId, studentPK.studentId);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StudentPK))
-        {
-            return false;
-        }
-        StudentPK other = (StudentPK) object;
-        if ((this.studentId == null && other.studentId != null) || (this.studentId != null && !this.studentId.equals(other.studentId)))
-        {
-            return false;
-        }
-        if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(studentId, userId);
     }
 
     @Override

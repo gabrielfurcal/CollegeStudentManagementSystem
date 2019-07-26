@@ -76,7 +76,7 @@ public class Teacher implements Serializable
         this.teacherCreationDate = teacherCreationDate;
     }
 
-    public Teacher(BigDecimal teacherId, BigDecimal userId)
+    public Teacher(int teacherId, int userId)
     {
         this.teachersPK = new TeacherPK(teacherId, userId);
     }

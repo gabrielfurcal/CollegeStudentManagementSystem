@@ -285,7 +285,7 @@ public class GroupController extends HttpServlet
             {
                 for (GroupRole oldDefinedRole : oldDefinedRoles)
                 {
-                    if(!Arrays.asList(rolesSelected).contains(oldDefinedRole.getRole().getRoleId().toString()))
+                    if(!Arrays.asList(rolesSelected).contains(Integer.toString(oldDefinedRole.getRole().getRoleId())))
                     {
                         if(!this._groupRoleRepository.delete(oldDefinedRole))
                             throw new Exception("An error has been occured deleting the groupRole");

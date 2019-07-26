@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,9 +44,8 @@ public class GroupRole implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "GROUP_ROLE_ID")
-    @SequenceGenerator(name="GROUPS_ROLES_SEQUENCE", sequenceName = "GROUPS_ROLES_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUPS_ROLES_SEQUENCE")
-    private BigDecimal groupRoleId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int groupRoleId;
     
     @JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")
     @ManyToOne(optional = false)
@@ -59,22 +59,22 @@ public class GroupRole implements Serializable
     {
     }
 
-    public GroupRole(BigDecimal groupRoleId)
+    public GroupRole(int groupRoleId)
     {
         this.groupRoleId = groupRoleId;
     }
 
-    public GroupRole(BigDecimal groupRoleId, String groupName, String roleName)
+    public GroupRole(int groupRoleId, String groupName, String roleName)
     {
         this.groupRoleId = groupRoleId;
     }
 
-    public BigDecimal getGroupRoleId()
+    public int getGroupRoleId()
     {
         return groupRoleId;
     }
 
-    public void setGroupRoleId(BigDecimal groupRoleId)
+    public void setGroupRoleId(int groupRoleId)
     {
         this.groupRoleId = groupRoleId;
     }
@@ -98,29 +98,20 @@ public class GroupRole implements Serializable
     {
         this.role = role;
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (groupRoleId != null ? groupRoleId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GroupRole groupRole = (GroupRole) o;
+        return groupRoleId == groupRole.groupRoleId &&
+                Objects.equals(group, groupRole.group) &&
+                Objects.equals(role, groupRole.role);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GroupRole))
-        {
-            return false;
-        }
-        GroupRole other = (GroupRole) object;
-        if ((this.groupRoleId == null && other.groupRoleId != null) || (this.groupRoleId != null && !this.groupRoleId.equals(other.groupRoleId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(groupRoleId, group, role);
     }
 
     @Override

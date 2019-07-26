@@ -7,6 +7,7 @@ package models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,10 +44,9 @@ public class UserTelephone implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @SequenceGenerator(name="USERS_TELEPHONES_SEQUENCE", sequenceName = "USERS_TELEPHONES_SEQUENCE", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_TELEPHONES_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_TELEPHONE_ID")
-    private BigDecimal userTelephoneId;
+    private int userTelephoneId;
     
     @JoinColumn(name = "TELEPHONE_ID", referencedColumnName = "TELEPHONE_ID")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -60,17 +60,17 @@ public class UserTelephone implements Serializable
     {
     }
 
-    public UserTelephone(BigDecimal userTelephoneId)
+    public UserTelephone(int userTelephoneId)
     {
         this.userTelephoneId = userTelephoneId;
     }
 
-    public BigDecimal getUserTelephoneId()
+    public int getUserTelephoneId()
     {
         return userTelephoneId;
     }
 
-    public void setUserTelephoneId(BigDecimal userTelephoneId)
+    public void setUserTelephoneId(int userTelephoneId)
     {
         this.userTelephoneId = userTelephoneId;
     }
@@ -96,27 +96,18 @@ public class UserTelephone implements Serializable
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (userTelephoneId != null ? userTelephoneId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserTelephone that = (UserTelephone) o;
+        return userTelephoneId == that.userTelephoneId &&
+                Objects.equals(telephone, that.telephone) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserTelephone))
-        {
-            return false;
-        }
-        UserTelephone other = (UserTelephone) object;
-        if ((this.userTelephoneId == null && other.userTelephoneId != null) || (this.userTelephoneId != null && !this.userTelephoneId.equals(other.userTelephoneId)))
-        {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(userTelephoneId, telephone, user);
     }
 
     @Override
