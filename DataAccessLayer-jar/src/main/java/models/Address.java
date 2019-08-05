@@ -267,6 +267,6 @@ public class Address implements Serializable
     @Override
     public String toString()
     {
-        return "Address{" + "addressId=" + addressId + ", addressStreetAndNumber=" + addressStreetAndNumber + ", addressNeighborhood=" + addressNeighborhood + ", addressSector=" + addressSector + ", addressMunicipality=" + addressMunicipality + ", addressProvince=" + addressProvince + ", addressLatitude=" + addressLatitude + ", addressLongitude=" + addressLongitude + ", addressCreationDate=" + addressCreationDate + ", campus=" + campus + ", users=" + users + '}';
+        return "Address{" + "addressId=" + addressId + ", addressStreetAndNumber=" + addressStreetAndNumber + ", addressNeighborhood=" + addressNeighborhood + ", addressSector=" + addressSector + ", addressMunicipality=" + addressMunicipality + ", addressProvince=" + addressProvince + ", addressLatitude=" + addressLatitude + ", addressLongitude=" + addressLongitude + ", addressCreationDate=" + addressCreationDate + '}';
     }
 }

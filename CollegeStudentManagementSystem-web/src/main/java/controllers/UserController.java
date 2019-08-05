@@ -17,7 +17,6 @@ import interfaces.IUserRoleRepository;
 import interfaces.IUserTelephoneRepository;
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -99,35 +98,35 @@ public class UserController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                 if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Edit"))
+                 if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditGet(request, response);
             }            
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -158,14 +157,14 @@ public class UserController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditPost(request, response);
@@ -176,7 +175,7 @@ public class UserController extends HttpServlet implements Serializable
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Users/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Users/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -251,7 +250,7 @@ public class UserController extends HttpServlet implements Serializable
             address.setAddressLatitude(request.getParameter("addressLatitude"));
             address.setAddressLongitude(request.getParameter("addressLongitude"));
             address.setAddressCreationDate(new Date());
-            
+
             //USER OBJECT
             User user = new User();
             user.setUserFirstName(request.getParameter("userFirstName"));
@@ -261,18 +260,15 @@ public class UserController extends HttpServlet implements Serializable
             user.setUserPassword(Utility.stringToSHA256(request.getParameter("userPassword")));
             user.setUserCreationDate(new Date());
             user.setAddress(address);
-            
-            if(!this._userRepository.save(user))
-                throw new Exception("An error has occurred saving the user");
-            
-            Position position = this._positionRepository.findById(new BigDecimal(request.getParameter("position")));
-            
+
+            Position position = this._positionRepository.findById(Integer.parseInt(request.getParameter("position")));
+
             if(position != null)
                 user.setPosition(position);
-            
-            if(!this._userRepository.update(user))
-                throw new Exception("An error has occurred updating the user");
-            
+
+            if(!this._userRepository.save(user))
+                throw new Exception("An error has occurred saving the user");
+
             //EMAIL OBJECT
             Email email = new Email();
 
@@ -293,7 +289,7 @@ public class UserController extends HttpServlet implements Serializable
                 Telephone toSaveTelephone = new Telephone();
                 toSaveTelephone.setTelephoneNumber(splittedValues[0]);
                 toSaveTelephone.setTelephoneCreationDate(new Date());
-                toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                 
                 
                 if(!this._telephoneRepository.save(toSaveTelephone))
@@ -314,7 +310,7 @@ public class UserController extends HttpServlet implements Serializable
             {
                 for (String roleSelected : rolesSelected)
                 {
-                    Role role = this._roleRepository.findById(new BigDecimal(roleSelected));
+                    Role role = this._roleRepository.findById(Integer.parseInt(roleSelected));
                     
                     UserRole userRole = new UserRole();
                     
@@ -340,7 +336,7 @@ public class UserController extends HttpServlet implements Serializable
     {
         String userId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        User user = this._userRepository.findById(new BigDecimal(userId));
+        User user = this._userRepository.findById(Integer.parseInt(userId));
         
         if(user == null)
             response.sendRedirect(request.getContextPath() + "/Users");
@@ -350,10 +346,13 @@ public class UserController extends HttpServlet implements Serializable
             
             List<Email> emails = this._emailRepository.findEmails(user);
             
-            if(emails != null || emails.size() > 0)
+            if(emails != null)
             {
-                Email email = emails.get(0);
-                request.setAttribute("email", email.getEmailText());
+                if(emails.size() > 0)
+                {
+                    Email email = emails.get(0);
+                    request.setAttribute("email", email.getEmailText());
+                }
             }
             
             List<UserTelephone> userTelephone = this._userTelephoneRepository.findUsersTelephones(user);
@@ -387,7 +386,7 @@ public class UserController extends HttpServlet implements Serializable
             if(Utility.isNullOrWhiteSpace(userId))
                 throw new Exception("UserId is empty");
             
-            User user = this._userRepository.findById(new BigDecimal(userId));
+            User user = this._userRepository.findById(Integer.parseInt(userId));
             
             if(user == null)
                 throw new Exception("User does not exist");
@@ -451,7 +450,7 @@ public class UserController extends HttpServlet implements Serializable
 
             if(!Utility.isNullOrWhiteSpace(positionId))
             {
-                Position position = this._positionRepository.findById(new BigDecimal(request.getParameter("position")));
+                Position position = this._positionRepository.findById(Integer.parseInt(request.getParameter("position")));
 
                 if(position != null)
                     user.setPosition(position);
@@ -482,14 +481,14 @@ public class UserController extends HttpServlet implements Serializable
                 Telephone toSaveTelephone = null;
                 
                 if(splittedValues.length == 3)
-                    toSaveTelephone = this._telephoneRepository.findTelephone(new BigDecimal(splittedValues[2]), splittedValues[0]);
+                    toSaveTelephone = this._telephoneRepository.findTelephone(Integer.parseInt(splittedValues[2]), splittedValues[0]);
                 
                 if(toSaveTelephone == null)
                 {
                     toSaveTelephone = new Telephone();
                     
                     toSaveTelephone.setTelephoneNumber(splittedValues[0]);
-                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                     toSaveTelephone.setTelephoneCreationDate(new Date());
                     
                     if(!this._telephoneRepository.save(toSaveTelephone))
@@ -498,7 +497,7 @@ public class UserController extends HttpServlet implements Serializable
                 else
                 {
                     toSaveTelephone.setTelephoneNumber(splittedValues[0]);
-                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                     
                     if(!this._telephoneRepository.update(toSaveTelephone))
                         throw new Exception("An error has occurred updating a telephone");
@@ -530,7 +529,7 @@ public class UserController extends HttpServlet implements Serializable
                 for (String roleSelected : rolesSelected)
                 {
                     //VERIFYING AND CREATING NEW RECORD WITH THE ROLE AND USER IN TABLE USERS_ROLES
-                    Role role = this._roleRepository.findById(new BigDecimal(roleSelected));
+                    Role role = this._roleRepository.findById(Integer.parseInt(roleSelected));
                     
                     if(role != null)
                     {
@@ -565,7 +564,7 @@ public class UserController extends HttpServlet implements Serializable
     {
         String userId = request.getParameter("id") == null || request.getParameter("id").isEmpty() ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        User user = this._userRepository.findById(new BigDecimal(userId));
+        User user = this._userRepository.findById(Integer.parseInt(userId));
         
         if(user == null)
             response.sendRedirect(request.getContextPath() + "/Users");
@@ -608,7 +607,7 @@ public class UserController extends HttpServlet implements Serializable
             if(Utility.isNullOrWhiteSpace(userId))
                 throw new Exception("ID empty");
             
-            User user = this._userRepository.findById(new BigDecimal(userId));
+            User user = this._userRepository.findById(Integer.parseInt(userId));
             
             if(user == null)
                 throw new Exception("User not found");
@@ -669,7 +668,7 @@ public class UserController extends HttpServlet implements Serializable
             if(Utility.isNullOrWhiteSpace(userId))
                 throw new Exception("ID empty");
             
-            User user = this._userRepository.findById(new BigDecimal(userId));
+            User user = this._userRepository.findById(Integer.parseInt(userId));
             
             if(user == null)
                 throw new Exception("User not found");

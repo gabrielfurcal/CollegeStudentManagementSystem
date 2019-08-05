@@ -16,5 +16,5 @@ import models.Teacher;
 @Local
 public interface ITeacherRepository extends IBaseRepository<Teacher>
 {
-    public Teacher findTeacher(BigDecimal teacherId);
+    public Teacher findTeacher(int teacherId);
 }

@@ -8,7 +8,6 @@ package controllers;
 import interfaces.IPermissionRepository;
 import interfaces.IPositionRepository;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +52,7 @@ public class PositionController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);   
@@ -61,28 +60,28 @@ public class PositionController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditGet(request, response);
             }
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -113,7 +112,7 @@ public class PositionController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);   
@@ -121,7 +120,7 @@ public class PositionController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditPost(request, response);
@@ -132,7 +131,7 @@ public class PositionController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Positions/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Positions/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -196,7 +195,7 @@ public class PositionController extends HttpServlet
     {
         String positionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Position position = this._positionRepository.findById(new BigDecimal(positionId));
+        Position position = this._positionRepository.findById(Integer.parseInt(positionId));
         
         if(position == null)
             response.sendRedirect(request.getContextPath() + "/Positions");
@@ -220,7 +219,7 @@ public class PositionController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(positionId))
                 throw new Exception("PositionId is empty");
             
-            Position position = this._positionRepository.findById(new BigDecimal(positionId));
+            Position position = this._positionRepository.findById(Integer.parseInt(positionId));
             
             
             if(position == null)
@@ -248,7 +247,7 @@ public class PositionController extends HttpServlet
     {
         String positionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Position position = this._positionRepository.findById(new BigDecimal(positionId));
+        Position position = this._positionRepository.findById(Integer.parseInt(positionId));
         
         if(position == null)
             response.sendRedirect(request.getContextPath() + "/Positions");
@@ -274,7 +273,7 @@ public class PositionController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(positionId))
                 throw new Exception("ID Empty");
             
-            Position position = this._positionRepository.findById(new BigDecimal(positionId));
+            Position position = this._positionRepository.findById(Integer.parseInt(positionId));
             
             if(position == null)
                 throw new Exception("Position not found");
@@ -306,7 +305,7 @@ public class PositionController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(positionId))
                 throw new Exception("ID Empty");
             
-            Position position = this._positionRepository.findById(new BigDecimal(positionId));
+            Position position = this._positionRepository.findById(Integer.parseInt(positionId));
             
             if(position == null)
                 throw new Exception("Position not found");

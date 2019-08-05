@@ -19,5 +19,5 @@ import models.Campus;
 public interface IBuildRepository extends IBaseRepository<Build>
 {
     public List<Build> findBuilds(Campus campus);
-    public Build findBuild(BigDecimal buildId);
+    public Build findBuild(int buildId);
 }

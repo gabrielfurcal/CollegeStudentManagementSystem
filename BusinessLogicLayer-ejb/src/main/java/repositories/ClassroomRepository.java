@@ -75,7 +75,7 @@ public class ClassroomRepository extends BaseRepository<Classroom> implements IC
     }
 
     @Override
-    public Classroom findClassroom(BigDecimal classroomId)
+    public Classroom findClassroom(int classroomId)
     {
         try
         {

@@ -117,6 +117,6 @@ public class UserRole implements Serializable
     @Override
     public String toString()
     {
-        return "UserRole{" + "userRoleId=" + userRoleId + ", role=" + role + ", user=" + user + '}';
+        return "UserRole{" + "userRoleId=" + userRoleId + '}';
     }
 }

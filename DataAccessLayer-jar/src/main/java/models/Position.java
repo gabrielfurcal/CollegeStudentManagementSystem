@@ -164,6 +164,6 @@ public class Position implements Serializable
     @Override
     public String toString()
     {
-        return "Position{" + "positionId=" + positionId + ", positionName=" + positionName + ", positionDescription=" + positionDescription + ", positionCreationDate=" + positionCreationDate + ", users=" + users + '}';
+        return "Position{" + "positionId=" + positionId + ", positionName=" + positionName + ", positionDescription=" + positionDescription + ", positionCreationDate=" + positionCreationDate + '}';
     }
 }

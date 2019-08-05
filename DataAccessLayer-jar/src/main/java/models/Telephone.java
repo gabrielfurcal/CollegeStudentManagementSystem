@@ -164,6 +164,6 @@ public class Telephone implements Serializable
     @Override
     public String toString()
     {
-        return "Telephone{" + "telephoneId=" + telephoneId + ", telephoneNumber=" + telephoneNumber + ", telephoneCreationDate=" + telephoneCreationDate + ", usersTelephones=" + usersTelephones + ", telephoneType=" + telephoneType + '}';
+        return "Telephone{" + "telephoneId=" + telephoneId + ", telephoneNumber=" + telephoneNumber + ", telephoneCreationDate=" + telephoneCreationDate + '}';
     }
 }

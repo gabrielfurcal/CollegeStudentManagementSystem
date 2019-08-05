@@ -120,7 +120,6 @@ public class ClassParticipant implements Serializable
         return "ClassParticipant{" +
                 "classParticipantId=" + classParticipantId +
                 ", courseSectHist=" + courseSectHist +
-                ", student=" + student +
                 '}';
     }
 }

@@ -18,5 +18,5 @@ import models.Telephone;
 public interface ITelephoneRepository extends IBaseRepository<Telephone>
 {
     public List<Telephone> findTelephones(String telephoneNumber);
-    public Telephone findTelephone(BigDecimal id, String telephoneNumber);
+    public Telephone findTelephone(int id, String telephoneNumber);
 }

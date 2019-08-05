@@ -195,6 +195,6 @@ public class Course implements Serializable
     @Override
     public String toString()
     {
-        return "Course{" + "courseId=" + courseId + ", courseName=" + courseName + ", coursePrice=" + coursePrice + ", courseCreationDate=" + courseCreationDate + ", courseActive=" + courseActive + ", courseAmountHours=" + courseAmountHours + ", coursesSections=" + coursesSections + '}';
+        return "Course{" + "courseId=" + courseId + ", courseName=" + courseName + ", coursePrice=" + coursePrice + ", courseCreationDate=" + courseCreationDate + ", courseActive=" + courseActive + ", courseAmountHours=" + courseAmountHours + '}';
     }
 }

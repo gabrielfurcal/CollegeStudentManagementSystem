@@ -33,81 +33,80 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
  * @author Gabriel_Liberato
  */
 @Entity
 @Table(name = "USERS")
 @XmlRootElement
 @NamedQueries(
-{
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId")
-    , @NamedQuery(name = "User.findByUserFirstName", query = "SELECT u FROM User u WHERE u.userFirstName = :userFirstName")
-    , @NamedQuery(name = "User.findByUserFatherLastName", query = "SELECT u FROM User u WHERE u.userFatherLastName = :userFatherLastName")
-    , @NamedQuery(name = "User.findByUserMotherLastName", query = "SELECT u FROM User u WHERE u.userMotherLastName = :userMotherLastName")
-    , @NamedQuery(name = "User.findByUserUsername", query = "SELECT u FROM User u WHERE u.userUsername = :userUsername")
-    , @NamedQuery(name = "User.findByUserPassword", query = "SELECT u FROM User u WHERE u.userPassword = :userPassword")
-    , @NamedQuery(name = "User.findByUserCreationDate", query = "SELECT u FROM User u WHERE u.userCreationDate = :userCreationDate")
-})
+        {
+                @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+                , @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId")
+                , @NamedQuery(name = "User.findByUserFirstName", query = "SELECT u FROM User u WHERE u.userFirstName = :userFirstName")
+                , @NamedQuery(name = "User.findByUserFatherLastName", query = "SELECT u FROM User u WHERE u.userFatherLastName = :userFatherLastName")
+                , @NamedQuery(name = "User.findByUserMotherLastName", query = "SELECT u FROM User u WHERE u.userMotherLastName = :userMotherLastName")
+                , @NamedQuery(name = "User.findByUserUsername", query = "SELECT u FROM User u WHERE u.userUsername = :userUsername")
+                , @NamedQuery(name = "User.findByUserPassword", query = "SELECT u FROM User u WHERE u.userPassword = :userPassword")
+                , @NamedQuery(name = "User.findByUserCreationDate", query = "SELECT u FROM User u WHERE u.userCreationDate = :userCreationDate")
+        })
 public class User implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
     @Column(name = "USER_FIRST_NAME")
     private String userFirstName;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
     @Column(name = "USER_FATHER_LAST_NAME")
     private String userFatherLastName;
-    
+
     @Size(max = 60)
     @Column(name = "USER_MOTHER_LAST_NAME")
     private String userMotherLastName;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 25)
     @Column(name = "USER_USERNAME")
     private String userUsername;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
     @Column(name = "USER_PASSWORD")
     private String userPassword;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "USER_CREATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date userCreationDate;
-    
+
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
-    
+
     @JoinColumn(name = "POSITION_ID", referencedColumnName = "POSITION_ID")
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Position position;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Student> students;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroup> usersGroups;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserRole> usersRoles;
 
@@ -148,7 +147,7 @@ public class User implements Serializable
 
     public void setUserFirstName(String userFirstName)
     {
-        this.userFirstName = userFirstName;
+        this.userFirstName = userFirstName.toUpperCase();
     }
 
     public String getUserFatherLastName()
@@ -156,20 +155,14 @@ public class User implements Serializable
         return userFatherLastName;
     }
 
-    public void setUserFatherLastName(String userFatherLastName)
-    {
-        this.userFatherLastName = userFatherLastName;
-    }
+    public void setUserFatherLastName(String userFatherLastName) { this.userFatherLastName = userFatherLastName.toUpperCase(); }
 
     public String getUserMotherLastName()
     {
         return userMotherLastName;
     }
 
-    public void setUserMotherLastName(String userMotherLastName)
-    {
-        this.userMotherLastName = userMotherLastName;
-    }
+    public void setUserMotherLastName(String userMotherLastName) { this.userMotherLastName = userMotherLastName.toUpperCase(); }
 
     public String getUserUsername()
     {
@@ -220,7 +213,7 @@ public class User implements Serializable
     {
         this.position = position;
     }
-    
+
     @XmlTransient
     public List<Student> getStudents()
     {
@@ -242,7 +235,7 @@ public class User implements Serializable
     {
         this.usersGroups = usersGroups;
     }
-    
+
     @XmlTransient
     public List<UserRole> getUsersRoles()
     {
@@ -255,7 +248,8 @@ public class User implements Serializable
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
@@ -274,13 +268,14 @@ public class User implements Serializable
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(userId, userFirstName, userFatherLastName, userMotherLastName, userUsername, userPassword, userCreationDate, address, position, students, usersGroups, usersRoles);
     }
 
     @Override
     public String toString()
     {
-        return "User{" + "userId=" + userId + ", userFirstName=" + userFirstName + ", userFatherLastName=" + userFatherLastName + ", userMotherLastName=" + userMotherLastName + ", userUsername=" + userUsername + ", userPassword=" + userPassword + ", userCreationDate=" + userCreationDate + ", address=" + address + ", position=" + position + ", students=" + students + ", usersGroups=" + usersGroups + ", usersRoles=" + usersRoles + '}';
+        return "User{" + "userId=" + userId + ", userFirstName=" + userFirstName + ", userFatherLastName=" + userFatherLastName + ", userMotherLastName=" + userMotherLastName + ", userUsername=" + userUsername + ", userPassword=" + userPassword + ", userCreationDate=" + userCreationDate + '}';
     }
 }

@@ -289,6 +289,6 @@ public class CourseSectionHistorical implements Serializable
     @Override
     public String toString()
     {
-        return "CoursesSectionsHistorical{" + "courseSectHistId=" + courseSectHistId + ", courseSectHistQuota=" + courseSectHistQuota + ", courseSectHistPrice=" + courseSectHistPrice + ", courseSectHistCreationDate=" + courseSectHistCreationDate + ", classParticipants=" + classParticipants + ", classroom=" + classroom + ", courseSection=" + courseSection + ", period=" + period + ", teacher=" + teacher + '}';
+        return "CoursesSectionsHistorical{" + "courseSectHistId=" + courseSectHistId + ", courseSectHistQuota=" + courseSectHistQuota + ", courseSectHistPrice=" + courseSectHistPrice + ", courseSectHistCreationDate=" + courseSectHistCreationDate + '}';
     }
 }

@@ -75,7 +75,7 @@ public class BuildRepository extends BaseRepository<Build> implements IBuildRepo
     }
 
     @Override
-    public Build findBuild(BigDecimal buildId)
+    public Build findBuild(int buildId)
     {
         try
         {

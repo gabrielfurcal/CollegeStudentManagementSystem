@@ -159,6 +159,6 @@ public class Classroom implements Serializable
     @Override
     public String toString()
     {
-        return "Classroom{" + "classroomsPK=" + classroomsPK + ", classroomName=" + classroomName + ", classroomCreationDate=" + classroomCreationDate + ", build=" + build + ", coursesSectionsHistorical=" + coursesSectionsHistorical + '}';
+        return "Classroom{" + "classroomsPK=" + classroomsPK + ", classroomName=" + classroomName + ", classroomCreationDate=" + classroomCreationDate + '}';
     }
 }

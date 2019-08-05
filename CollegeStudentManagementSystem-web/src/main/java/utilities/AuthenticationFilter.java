@@ -36,8 +36,9 @@ public class AuthenticationFilter implements Filter
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String path = httpRequest.getRequestURI();
         HttpSession session = httpRequest.getSession(false);
-        
-        boolean loggedIn = session != null && session.getAttribute("userUsername") != null && httpRequest.getRemoteUser() != null;
+
+//        boolean loggedIn = session != null && session.getAttribute("userUsername") != null && httpRequest.getRemoteUser() != null;
+        boolean loggedIn = session != null && session.getAttribute("userUsername") != null;
         boolean loginRequest = path.equals(httpRequest.getContextPath() + "/Login");
         boolean resourcesRequest = path.contains("/resources/") || path.contains("https://");
         

@@ -15,9 +15,7 @@ import interfaces.ICampusRepository;
 import interfaces.IClassroomRepository;
 import interfaces.ICourseSectionHistoricalRepository;
 import interfaces.IPeriodRepository;
-
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +27,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import models.Campus;
 import models.Classroom;
 import models.Course;
@@ -100,7 +97,7 @@ public class CourseSectionController extends HttpServlet
         {
             if (request.getRequestURI().contains("/Create"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Create"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);
@@ -108,42 +105,42 @@ public class CourseSectionController extends HttpServlet
             }
             else if (request.getRequestURI().contains("/Edit"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Edit"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditGet(request, response);
             }
             else if (request.getRequestURI().contains("/Details"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Details"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Details"))
                     throw new Exception("User doesn't have permission");
 
                 doDetailsGet(request, response);
             }
             else if (request.getRequestURI().contains("/Participants/All"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Participants/All"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Participants/All"))
                     throw new Exception("User doesn't have permission");
 
                 doParticipantsAllGet(request, response);
             }
             else if (request.getRequestURI().contains("/Participants"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Participants"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Participants"))
                     throw new Exception("User doesn't have permission");
 
                 doParticipantsGet(request, response);
             }
             else if (request.getRequestURI().contains("/Delete"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Delete"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Delete"))
                     throw new Exception("User doesn't have permission");
 
                 doDeleteGet(request, response);
             }
             else
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections"))
                     throw new Exception("User doesn't have permission");
 
                 doIndexGet(request, response);
@@ -174,14 +171,14 @@ public class CourseSectionController extends HttpServlet
         {
             if (request.getRequestURI().contains("/Create"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Create"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if (request.getRequestURI().contains("/Edit"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Edit"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditPost(request, response);
@@ -192,7 +189,7 @@ public class CourseSectionController extends HttpServlet
             }
             else if (request.getRequestURI().contains("/Delete"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSections/Delete"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSections/Delete"))
                     throw new Exception("User doesn't have permission");
 
                 doDeletePost(request, response);
@@ -282,8 +279,8 @@ public class CourseSectionController extends HttpServlet
             int[] currentYearAndQuarter = Utility.getCurrentYearAndQuarter();
 
             PeriodPK periodsPK = new PeriodPK();
-            periodsPK.setPeriodYear(currentYearAndQuarter[0]);
-            periodsPK.setPeriodQuarter(currentYearAndQuarter[1]);
+            periodsPK.setPeriodYear(Integer.parseInt(Integer.toString(currentYearAndQuarter[0])));
+            periodsPK.setPeriodQuarter(Integer.parseInt(Integer.toString(currentYearAndQuarter[1])));
 
             Period period = this._periodRepository.findById(periodsPK);
 
@@ -292,14 +289,14 @@ public class CourseSectionController extends HttpServlet
 
             courseSectionHistorical.setPeriod(period);
 
-            Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(request.getParameter("teacher")));
+            Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(request.getParameter("teacher")));
 
             if (teacher == null)
                 throw new Exception("Teacher does not exist");
 
             courseSectionHistorical.setTeacher(teacher);
 
-            Classroom classroom = this._classroomRepository.findClassroom(new BigDecimal(request.getParameter(
+            Classroom classroom = this._classroomRepository.findClassroom(Integer.parseInt(request.getParameter(
                     "classroom")));
 
             if (classroom == null)
@@ -325,7 +322,7 @@ public class CourseSectionController extends HttpServlet
         String courseSectionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ?
                 request.getAttribute("id").toString() : request.getParameter("id");
 
-        CourseSection courseSection = this._courseSectionRepository.findCourseSection(new BigDecimal(courseSectionId));
+        CourseSection courseSection = this._courseSectionRepository.findCourseSection(Integer.parseInt(courseSectionId));
 
         if (courseSection == null)
             response.sendRedirect(request.getContextPath() + "/CoursesSections");
@@ -378,7 +375,7 @@ public class CourseSectionController extends HttpServlet
                 throw new Exception("CourseSectionId is empty");
 
             CourseSection courseSection =
-                    this._courseSectionRepository.findCourseSection(new BigDecimal(courseSectionId));
+                    this._courseSectionRepository.findCourseSection(Integer.parseInt(courseSectionId));
 
             if (courseSection == null)
                 throw new Exception("CourseSection does not exist");
@@ -396,7 +393,7 @@ public class CourseSectionController extends HttpServlet
                 throw new Exception("CourseSectionHistorical does not exist");
 
             int storedLastPeriodSum =
-                    Integer.parseInt(Integer.toString(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear())) + Integer.parseInt(Integer.toString(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodQuarter()));
+                    courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear() + courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodQuarter();
 
             int currentPeriodSum = Utility.getCurrentYearAndQuarter()[0] + Utility.getCurrentYearAndQuarter()[1];
 
@@ -411,8 +408,8 @@ public class CourseSectionController extends HttpServlet
                 int[] currentYearAndQuarter = Utility.getCurrentYearAndQuarter();
 
                 PeriodPK periodsPK = new PeriodPK();
-                periodsPK.setPeriodYear(currentYearAndQuarter[0]);
-                periodsPK.setPeriodQuarter(currentYearAndQuarter[1]);
+                periodsPK.setPeriodYear(Integer.parseInt(Integer.toString(currentYearAndQuarter[0])));
+                periodsPK.setPeriodQuarter(Integer.parseInt(Integer.toString(currentYearAndQuarter[1])));
 
                 Period period = this._periodRepository.findById(periodsPK);
 
@@ -421,14 +418,14 @@ public class CourseSectionController extends HttpServlet
 
                 courseSectionHistorical.setPeriod(period);
 
-                Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(request.getParameter("teacher")));
+                Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(request.getParameter("teacher")));
 
                 if (teacher == null)
                     throw new Exception("Teacher does not exist");
 
                 courseSectionHistorical.setTeacher(teacher);
 
-                Classroom classroom = this._classroomRepository.findClassroom(new BigDecimal(request.getParameter(
+                Classroom classroom = this._classroomRepository.findClassroom(Integer.parseInt(request.getParameter(
                         "classroom")));
 
                 if (classroom == null)
@@ -447,14 +444,14 @@ public class CourseSectionController extends HttpServlet
                 courseSection.setCourseSectionEndHour(request.getParameter("courseSectionEndHour"));
                 courseSection.setCourseSectionActive(Short.parseShort(request.getParameter("courseSectionActive")));
 
-                Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(request.getParameter("teacher")));
+                Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(request.getParameter("teacher")));
 
                 if (teacher == null)
                     throw new Exception("Teacher does not exist");
 
                 courseSectionHistorical.setTeacher(teacher);
 
-                Classroom classroom = this._classroomRepository.findClassroom(new BigDecimal(request.getParameter(
+                Classroom classroom = this._classroomRepository.findClassroom(Integer.parseInt(request.getParameter(
                         "classroom")));
 
                 if (classroom == null)
@@ -482,7 +479,7 @@ public class CourseSectionController extends HttpServlet
         String courseSectionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ?
                 request.getAttribute("id").toString() : request.getParameter("id");
 
-        CourseSection courseSection = this._courseSectionRepository.findCourseSection(new BigDecimal(courseSectionId));
+        CourseSection courseSection = this._courseSectionRepository.findCourseSection(Integer.parseInt(courseSectionId));
 
         if (courseSection == null)
             response.sendRedirect(request.getContextPath() + "/CoursesSections");
@@ -596,7 +593,7 @@ public class CourseSectionController extends HttpServlet
         String courseSectionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ?
                 request.getAttribute("id").toString() : request.getParameter("id");
 
-        CourseSection courseSection = this._courseSectionRepository.findCourseSection(new BigDecimal(courseSectionId));
+        CourseSection courseSection = this._courseSectionRepository.findCourseSection(Integer.parseInt(courseSectionId));
 
         if (courseSection == null)
             response.sendRedirect(request.getContextPath() + "/CoursesSections");
@@ -611,10 +608,10 @@ public class CourseSectionController extends HttpServlet
         for (CourseSectionHistorical courseSectionHistorical : courseSectionsHistorical)
         {
             String dbYear = Integer.toString(courseSectionHistorical.getPeriod().getPeriodsPK().getPeriodYear());
-            String currentYear = new BigDecimal(periodAndQuarter[0]).toString();
+            String currentYear = Integer.toString(periodAndQuarter[0]);
 
-            String dbQuarter = new BigDecimal(periodAndQuarter[1]).toString();
-            String currentQuarter = new BigDecimal(periodAndQuarter[1]).toString();
+            String dbQuarter = Integer.toString(periodAndQuarter[1]);
+            String currentQuarter = Integer.toString(periodAndQuarter[1]);
 
             if (dbYear.equals(currentYear) && dbQuarter.equals(currentQuarter))
                 currentCourseSectionHistoricalId = courseSectionHistorical.getCourseSectHistId();
@@ -640,7 +637,7 @@ public class CourseSectionController extends HttpServlet
                 throw new Exception("Empty parameter");
 
             CourseSectionHistorical courseSectionHistorical =
-                    this._courseSectionHistoricalRepository.findById(new BigDecimal(courseSectionHistoricalId));
+                    this._courseSectionHistoricalRepository.findById(Integer.parseInt(courseSectionHistoricalId));
 
             if (courseSectionHistorical == null)
                 throw new Exception("Course section historical not found");

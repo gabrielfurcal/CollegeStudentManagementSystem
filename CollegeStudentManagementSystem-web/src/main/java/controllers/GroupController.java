@@ -10,7 +10,6 @@ import interfaces.IGroupRoleRepository;
 import interfaces.IPermissionRepository;
 import interfaces.IRoleRepository;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,35 +64,35 @@ public class GroupController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);   
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditGet(request, response);
             }
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -124,14 +123,14 @@ public class GroupController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);   
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditPost(request, response);
@@ -142,7 +141,7 @@ public class GroupController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Groups/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Groups/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -202,7 +201,7 @@ public class GroupController extends HttpServlet
             {
                 for (String roleSelected : rolesSelected)
                 {
-                    Role role = this._roleRepository.findById(new BigDecimal(roleSelected));
+                    Role role = this._roleRepository.findById(Integer.parseInt(roleSelected));
 
                     if(role != null)
                     {
@@ -231,7 +230,7 @@ public class GroupController extends HttpServlet
     {
         String groupId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Group group = this._groupRepository.findById(new BigDecimal(groupId));
+        Group group = this._groupRepository.findById(Integer.parseInt(groupId));
         
         if(group == null)
             response.sendRedirect(request.getContextPath() + "/Groups");
@@ -262,7 +261,7 @@ public class GroupController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(groupId))
                 throw new Exception("GroupId is empty");
             
-            Group group = this._groupRepository.findById(new BigDecimal(groupId));
+            Group group = this._groupRepository.findById(Integer.parseInt(groupId));
             
             
             if(group == null)
@@ -305,7 +304,7 @@ public class GroupController extends HttpServlet
                 for (String roleSelected : rolesSelected)
                 {
                     //VERIFYING AND CREATING NEW RECORD WITH THE ROLE AND GROUP IN TABLE GROUPS_ROLES
-                    Role role = this._roleRepository.findById(new BigDecimal(roleSelected));
+                    Role role = this._roleRepository.findById(Integer.parseInt(roleSelected));
 
                     if(role != null)
                     {
@@ -340,7 +339,7 @@ public class GroupController extends HttpServlet
     {
         String groupId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Group group = this._groupRepository.findById(new BigDecimal(groupId));
+        Group group = this._groupRepository.findById(Integer.parseInt(groupId));
         
         if(group == null)
             response.sendRedirect(request.getContextPath() + "/Groups");
@@ -372,7 +371,7 @@ public class GroupController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(groupId))
                 throw new Exception("ID Empty");
             
-            Group group = this._groupRepository.findById(new BigDecimal(groupId));
+            Group group = this._groupRepository.findById(Integer.parseInt(groupId));
             
             if(group == null)
                 throw new Exception("Group not found");
@@ -413,7 +412,7 @@ public class GroupController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(groupId))
                 throw new Exception("ID Empty");
             
-            Group group = this._groupRepository.findById(new BigDecimal(groupId));
+            Group group = this._groupRepository.findById(Integer.parseInt(groupId));
             
             if(group == null)
                 throw new Exception("Group not found");

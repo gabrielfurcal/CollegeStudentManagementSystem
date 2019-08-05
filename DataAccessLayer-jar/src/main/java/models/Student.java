@@ -148,6 +148,6 @@ public class Student implements Serializable
     @Override
     public String toString()
     {
-        return "Student{" + "studentsPK=" + studentsPK + ", studentCreationDate=" + studentCreationDate + ", classParticipants=" + classParticipants + ", user=" + user + '}';
+        return "Student{" + "studentsPK=" + studentsPK + ", studentCreationDate=" + studentCreationDate + '}';
     }
 }

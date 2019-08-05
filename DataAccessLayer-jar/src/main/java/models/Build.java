@@ -167,6 +167,6 @@ public class Build implements Serializable
     @Override
     public String toString()
     {
-        return "Build{" + "buildsPK=" + buildsPK + ", buildName=" + buildName + ", buildCreationDate=" + buildCreationDate + ", classrooms=" + classrooms + ", campus=" + campus + '}';
+        return "Build{" + "buildsPK=" + buildsPK + ", buildName=" + buildName + ", buildCreationDate=" + buildCreationDate + '}';
     }
 }

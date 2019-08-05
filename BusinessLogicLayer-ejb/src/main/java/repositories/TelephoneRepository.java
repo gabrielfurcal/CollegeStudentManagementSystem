@@ -71,7 +71,7 @@ public class TelephoneRepository extends BaseRepository<Telephone> implements IT
     }
 
     @Override
-    public Telephone findTelephone(BigDecimal id, String telephoneNumber)
+    public Telephone findTelephone(int id, String telephoneNumber)
     {
         try
         {

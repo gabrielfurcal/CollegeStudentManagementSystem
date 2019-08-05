@@ -117,6 +117,6 @@ public class GroupRole implements Serializable
     @Override
     public String toString()
     {
-        return "GroupRole{" + "groupRoleId=" + groupRoleId + ", group=" + group + ", role=" + role + '}';
+        return "GroupRole{" + "groupRoleId=" + groupRoleId + '}';
     }
 }

@@ -132,6 +132,6 @@ public class Period implements Serializable
     @Override
     public String toString()
     {
-        return "Period{" + "periodsPK=" + periodsPK + ", periodCreationDate=" + periodCreationDate + ", coursesSectionsHistorical=" + coursesSectionsHistorical + '}';
+        return "Period{" + "periodsPK=" + periodsPK + ", periodCreationDate=" + periodCreationDate + '}';
     }
 }

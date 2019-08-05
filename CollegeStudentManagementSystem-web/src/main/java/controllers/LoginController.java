@@ -75,7 +75,7 @@ public class LoginController extends HttpServlet implements Serializable
             if (user == null)
                 throw new AuthenticationException();
            
-            request.login(username, password);
+            //request.login(username, password);
 
             HttpSession session = request.getSession();
             session.setAttribute("userId", user.getUserId());
@@ -89,7 +89,7 @@ public class LoginController extends HttpServlet implements Serializable
             request.setAttribute("error-login", "Bad credentials. Please, try again.");
             doGet(request, response);
         } 
-        catch (IOException | ServletException ex)
+        catch (IOException /*| ServletException*/ ex)
         {
             request.setAttribute("error-login", "Sorry, something's wrong loggin in. Please, try again.");
             doGet(request, response);

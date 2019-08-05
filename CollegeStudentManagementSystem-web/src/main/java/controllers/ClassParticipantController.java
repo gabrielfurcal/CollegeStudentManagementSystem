@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * @author Gabriel_Liberato
@@ -56,7 +55,7 @@ public class ClassParticipantController extends HttpServlet
         {
             if (request.getRequestURI().contains("/Students/Unlink"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/ClassParticipants/Students/Unlink"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/ClassParticipants/Students/Unlink"))
                     throw new Exception("User doesn't have permission");
 
                 doUnlinkGet(request, response);
@@ -115,7 +114,7 @@ public class ClassParticipantController extends HttpServlet
             if(student == null)
                 throw new Exception("Student not found");
 
-            CourseSectionHistorical courseSectionHistorical = this._courseSectionHistoricalRepository.findById(new BigDecimal(courseSectionHistoricalId));
+            CourseSectionHistorical courseSectionHistorical = this._courseSectionHistoricalRepository.findById(Integer.parseInt(courseSectionHistoricalId));
 
             if(courseSectionHistorical == null)
                 throw new Exception("CourseSectionHistorical not found");

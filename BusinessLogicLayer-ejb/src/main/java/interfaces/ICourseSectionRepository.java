@@ -19,5 +19,5 @@ import models.CourseSection;
 public interface ICourseSectionRepository extends IBaseRepository<CourseSection>
 {
     public List<CourseSection> findCoursesSections(Course course);
-    public CourseSection findCourseSection(BigDecimal courseSectionId);
+    public CourseSection findCourseSection(int courseSectionId);
 }

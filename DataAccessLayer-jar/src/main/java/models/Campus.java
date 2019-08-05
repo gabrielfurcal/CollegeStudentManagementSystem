@@ -160,6 +160,6 @@ public class Campus implements Serializable
     @Override
     public String toString()
     {
-        return "Campus{" + "campusId=" + campusId + ", campusName=" + campusName + ", campusCreationDate=" + campusCreationDate + ", builds=" + builds + ", address=" + address + '}';
+        return "Campus{" + "campusId=" + campusId + ", campusName=" + campusName + ", campusCreationDate=" + campusCreationDate + '}';
     }
 }

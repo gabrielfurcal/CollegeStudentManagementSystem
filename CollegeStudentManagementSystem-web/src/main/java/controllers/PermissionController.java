@@ -8,7 +8,6 @@ package controllers;
 import interfaces.IPermissionRepository;
 import interfaces.IRolePermissionRepository;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -54,35 +53,35 @@ public class PermissionController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditGet(request, response);
             }            
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -113,14 +112,14 @@ public class PermissionController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditPost(request, response);
@@ -131,7 +130,7 @@ public class PermissionController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Permissions/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Permissions/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -196,7 +195,7 @@ public class PermissionController extends HttpServlet
     {
         String permissionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Permission permission = this._permissionRepository.findById(new BigDecimal(permissionId));
+        Permission permission = this._permissionRepository.findById(Integer.parseInt(permissionId));
         
         if(permission == null)
             response.sendRedirect(request.getContextPath() + "/Permissions");
@@ -219,7 +218,7 @@ public class PermissionController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(permissionId))
                 throw new Exception("PermissionId is empty");
             
-            Permission permission = this._permissionRepository.findById(new BigDecimal(permissionId));
+            Permission permission = this._permissionRepository.findById(Integer.parseInt(permissionId));
             
             if(permission == null)
                 throw new Exception("Permission does not exist");
@@ -247,7 +246,7 @@ public class PermissionController extends HttpServlet
     {
         String permissionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Permission permission = this._permissionRepository.findById(new BigDecimal(permissionId));
+        Permission permission = this._permissionRepository.findById(Integer.parseInt(permissionId));
         
         if(permission == null)
             response.sendRedirect(request.getContextPath() + "/Permissions");
@@ -272,7 +271,7 @@ public class PermissionController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(permissionId))
                 throw new Exception("ID Empty");
             
-            Permission permission = this._permissionRepository.findById(new BigDecimal(permissionId));
+            Permission permission = this._permissionRepository.findById(Integer.parseInt(permissionId));
             
             if(permission == null)
                 throw new Exception("Permission not found");
@@ -313,7 +312,7 @@ public class PermissionController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(permissionId))
                 throw new Exception("ID Empty");
             
-            Permission permission = this._permissionRepository.findById(new BigDecimal(permissionId));
+            Permission permission = this._permissionRepository.findById(Integer.parseInt(permissionId));
             
             if(permission == null)
                 throw new Exception("Permission not found");

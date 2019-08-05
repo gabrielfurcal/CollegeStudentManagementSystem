@@ -173,6 +173,6 @@ public class Group implements Serializable
     @Override
     public String toString()
     {
-        return "Group{" + "groupId=" + groupId + ", groupName=" + groupName + ", groupCreationDate=" + groupCreationDate + ", groupDescription=" + groupDescription + ", usersGroups=" + usersGroups + ", groupsRoles=" + groupsRoles + '}';
+        return "Group{" + "groupId=" + groupId + ", groupName=" + groupName + ", groupCreationDate=" + groupCreationDate + ", groupDescription=" + groupDescription + '}';
     }
 }

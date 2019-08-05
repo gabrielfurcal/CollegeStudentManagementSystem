@@ -149,6 +149,6 @@ public class Teacher implements Serializable
     @Override
     public String toString()
     {
-        return "Teacher{" + "teachersPK=" + teachersPK + ", teacherCreationDate=" + teacherCreationDate + ", user=" + user + ", coursesSectionsHistorical=" + coursesSectionsHistorical + '}';
+        return "Teacher{" + "teachersPK=" + teachersPK + ", teacherCreationDate=" + teacherCreationDate + '}';
     } 
 }

@@ -19,5 +19,5 @@ import models.Role;
 public interface IPermissionRepository extends IBaseRepository<Permission>
 {
     public List<Permission> findPermissions(Role role);
-    public boolean hasUserPermission(BigDecimal userId, String url);
+    public boolean hasUserPermission(int userId, String url);
 }

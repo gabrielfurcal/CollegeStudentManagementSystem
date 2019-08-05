@@ -72,14 +72,14 @@ public class CourseSectionHistoricalController extends HttpServlet
         {
             if (request.getRequestURI().contains("/Details"))
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSectionsHistorical/Details"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSectionsHistorical/Details"))
                     throw new Exception("User doesn't have permission");
 
                 doDetailsGet(request, response);
             }
             else
             {
-                if (!this._permissionRepository.hasUserPermission((BigDecimal) request.getSession(false).getAttribute("userId"), "/CoursesSectionsHistorical"))
+                if (!this._permissionRepository.hasUserPermission((int) request.getSession(false).getAttribute("userId"), "/CoursesSectionsHistorical"))
                     throw new Exception("User doesn't have permission");
 
                 doIndexGet(request, response);
@@ -128,7 +128,7 @@ public class CourseSectionHistoricalController extends HttpServlet
         String courseSectionId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ?
                 request.getAttribute("id").toString() : request.getParameter("id");
 
-        CourseSection courseSection = this._courseSectionRepository.findCourseSection(new BigDecimal(courseSectionId));
+        CourseSection courseSection = this._courseSectionRepository.findCourseSection(Integer.parseInt(courseSectionId));
 
         if (courseSection == null)
             response.sendRedirect(request.getContextPath() + "/CoursesSections");
@@ -153,7 +153,7 @@ public class CourseSectionHistoricalController extends HttpServlet
     {
         String courseSectionHitoricalId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
 
-            CourseSectionHistorical courseSectionHistorical = this._courseSectionHistoricalRepository.findById(new BigDecimal(courseSectionHitoricalId));
+            CourseSectionHistorical courseSectionHistorical = this._courseSectionHistoricalRepository.findById(Integer.parseInt(courseSectionHitoricalId));
 
             if(courseSectionHistorical == null)
                 response.sendRedirect(request.getContextPath() + "/CoursesSectionsHistorical?id=" + request.getRequestURI().split("=")[1]);

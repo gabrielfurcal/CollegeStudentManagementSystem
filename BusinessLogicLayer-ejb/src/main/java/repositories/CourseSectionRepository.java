@@ -76,7 +76,7 @@ public class CourseSectionRepository extends BaseRepository<CourseSection> imple
     }
 
     @Override
-    public CourseSection findCourseSection(BigDecimal courseSectionId)
+    public CourseSection findCourseSection(int courseSectionId)
     {
         try
         {

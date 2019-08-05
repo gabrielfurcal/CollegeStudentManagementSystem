@@ -54,7 +54,7 @@ public class TeacherRepository extends BaseRepository<Teacher> implements ITeach
     }
 
     @Override
-    public Teacher findTeacher(BigDecimal teacherId)
+    public Teacher findTeacher(int teacherId)
     {
         try
         {

@@ -8,7 +8,6 @@ package controllers;
 import interfaces.IPeriodRepository;
 import interfaces.IPermissionRepository;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -54,14 +53,14 @@ public class PeriodController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Periods/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Periods/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Periods"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Periods"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);

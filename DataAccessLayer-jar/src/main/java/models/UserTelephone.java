@@ -113,6 +113,6 @@ public class UserTelephone implements Serializable
     @Override
     public String toString()
     {
-        return "UserTelephone{" + "userTelephoneId=" + userTelephoneId + ", telephone=" + telephone + ", user=" + user + '}';
+        return "UserTelephone{" + "userTelephoneId=" + userTelephoneId + '}';
     }
 }

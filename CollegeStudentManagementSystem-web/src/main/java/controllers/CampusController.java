@@ -10,7 +10,6 @@ import interfaces.IBuildRepository;
 import interfaces.ICampusRepository;
 import interfaces.IPermissionRepository;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +61,7 @@ public class CampusController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);   
@@ -70,28 +69,28 @@ public class CampusController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Edit"))
                     throw new Exception("User doesn't have permission");
 
                 doEditGet(request, response);
             }
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -122,14 +121,14 @@ public class CampusController extends HttpServlet
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditPost(request, response);   
@@ -140,7 +139,7 @@ public class CampusController extends HttpServlet
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Campus/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Campus/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -217,7 +216,7 @@ public class CampusController extends HttpServlet
     {
         String campusId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Campus campus = this._campusRepository.findById(new BigDecimal(campusId));
+        Campus campus = this._campusRepository.findById(Integer.parseInt(campusId));
         
         if(campus == null)
             response.sendRedirect(request.getContextPath() + "/Campus");
@@ -243,7 +242,7 @@ public class CampusController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(campusId))
                 throw new Exception("CampusId is empty");
             
-            Campus campus = this._campusRepository.findById(new BigDecimal(campusId));
+            Campus campus = this._campusRepository.findById(Integer.parseInt(campusId));
             
             if(campus == null)
                 throw new Exception("Campus does not exist");
@@ -279,7 +278,7 @@ public class CampusController extends HttpServlet
     {
         String campusId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Campus campus = this._campusRepository.findById(new BigDecimal(campusId));
+        Campus campus = this._campusRepository.findById(Integer.parseInt(campusId));
         
         if(campus == null)
             response.sendRedirect(request.getContextPath() + "/Campus");
@@ -307,7 +306,7 @@ public class CampusController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(campusId))
                 throw new Exception("ID Empty");
             
-            Campus campus = this._campusRepository.findById(new BigDecimal(campusId));
+            Campus campus = this._campusRepository.findById(Integer.parseInt(campusId));
             
             Address address = campus.getAddress();
             
@@ -344,7 +343,7 @@ public class CampusController extends HttpServlet
             if(Utility.isNullOrWhiteSpace(campusId))
                 throw new Exception("ID Empty");
             
-            Campus campus = this._campusRepository.findById(new BigDecimal(campusId));
+            Campus campus = this._campusRepository.findById(Integer.parseInt(campusId));
             
             Address address = campus.getAddress();
             

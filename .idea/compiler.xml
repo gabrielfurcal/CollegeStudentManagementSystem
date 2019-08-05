@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CollegeStudentManagementSystem-ear" />
         <module name="CollegeStudentManagementSystem-web" />
         <module name="DataAccessLayer-jar" />
+        <module name="CollegeStudentManagementSystem-ear" />
         <module name="BusinessLogicLayer-ejb" />
       </profile>
     </annotationProcessing>

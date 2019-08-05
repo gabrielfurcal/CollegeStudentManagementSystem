@@ -15,7 +15,6 @@ import interfaces.IUserRoleRepository;
 import interfaces.IUserTelephoneRepository;
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -90,35 +89,35 @@ public class StudentController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                 if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Edit"))
+                 if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditGet(request, response);
             }            
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -149,14 +148,14 @@ public class StudentController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditPost(request, response);
@@ -167,7 +166,7 @@ public class StudentController extends HttpServlet implements Serializable
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Students/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Students/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -271,7 +270,7 @@ public class StudentController extends HttpServlet implements Serializable
                 Telephone toSaveTelephone = new Telephone();
                 toSaveTelephone.setTelephoneNumber(splittedValues[0]);
                 toSaveTelephone.setTelephoneCreationDate(new Date());
-                toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                 
                 
                 if(!this._telephoneRepository.save(toSaveTelephone))
@@ -406,14 +405,14 @@ public class StudentController extends HttpServlet implements Serializable
                 Telephone toSaveTelephone = null;
                 
                 if(splittedValues.length == 3)
-                    toSaveTelephone = this._telephoneRepository.findTelephone(new BigDecimal(splittedValues[2]), splittedValues[0]);
+                    toSaveTelephone = this._telephoneRepository.findTelephone(Integer.parseInt(splittedValues[2]), splittedValues[0]);
                 
                 if(toSaveTelephone == null)
                 {
                     toSaveTelephone = new Telephone();
                     
                     toSaveTelephone.setTelephoneNumber(splittedValues[0]);
-                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                     toSaveTelephone.setTelephoneCreationDate(new Date());
                     
                     if(!this._telephoneRepository.save(toSaveTelephone))
@@ -422,7 +421,7 @@ public class StudentController extends HttpServlet implements Serializable
                 else
                 {
                     toSaveTelephone.setTelephoneNumber(splittedValues[0]);
-                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                     
                     if(!this._telephoneRepository.update(toSaveTelephone))
                         throw new Exception("An error has occurred updating a telephone");

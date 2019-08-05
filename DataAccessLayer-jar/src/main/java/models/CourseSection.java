@@ -212,6 +212,6 @@ public class CourseSection implements Serializable
     @Override
     public String toString()
     {
-        return "CourseSection{" + "coursesSectionsPK=" + coursesSectionsPK + ", courseSectionCreationDate=" + courseSectionCreationDate + ", courseSectionDay=" + courseSectionDay + ", courseSectionStartHour=" + courseSectionStartHour + ", courseSectionEndHour=" + courseSectionEndHour + ", courseSectionActive=" + courseSectionActive + ", course=" + course + ", coursesSectionsHistorical=" + coursesSectionsHistorical + '}';
+        return "CourseSection{" + "coursesSectionsPK=" + coursesSectionsPK + ", courseSectionCreationDate=" + courseSectionCreationDate + ", courseSectionDay=" + courseSectionDay + ", courseSectionStartHour=" + courseSectionStartHour + ", courseSectionEndHour=" + courseSectionEndHour + ", courseSectionActive=" + courseSectionActive + ", course=" + '}';
     }
 }

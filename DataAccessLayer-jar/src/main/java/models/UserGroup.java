@@ -117,6 +117,6 @@ public class UserGroup implements Serializable
     @Override
     public String toString()
     {
-        return "UserGroup{" + "userGroupId=" + userGroupId + ", group=" + group + ", user=" + user + '}';
+        return "UserGroup{" + "userGroupId=" + userGroupId + '}';
     }
 }

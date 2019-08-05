@@ -12,7 +12,6 @@ import interfaces.ITelephoneTypeRepository;
 import interfaces.IUserTelephoneRepository;
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -71,7 +70,7 @@ public class TelephoneController extends HttpServlet implements Serializable
             }            
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Telephones/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Telephones/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
@@ -82,7 +81,7 @@ public class TelephoneController extends HttpServlet implements Serializable
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Telephones"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Telephones"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -113,14 +112,14 @@ public class TelephoneController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Telephones/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Telephones/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Telephones/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Telephones/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditPost(request, response);
@@ -131,7 +130,7 @@ public class TelephoneController extends HttpServlet implements Serializable
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Telephones/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Telephones/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -198,7 +197,7 @@ public class TelephoneController extends HttpServlet implements Serializable
             if(!this._telephoneRepository.save(telephone))
                 throw new Exception("An error has been occurred trying to save the telephone");
                     
-            TelephoneType telephoneType = this._telephoneTypeRepository.findById(new BigDecimal(telephoneTypeId));
+            TelephoneType telephoneType = this._telephoneTypeRepository.findById(Integer.parseInt(telephoneTypeId));
             telephone.setTelephoneType(telephoneType);
             
             if(!this._telephoneRepository.update(telephone))
@@ -229,11 +228,11 @@ public class TelephoneController extends HttpServlet implements Serializable
             if(utilities.Utility.isNullOrWhiteSpace(telephoneId) || utilities.Utility.isNullOrWhiteSpace(telephoneNumber) || utilities.Utility.isNullOrWhiteSpace(telephoneTypeId))
                 throw new Exception("Empty parameters");
             
-            Telephone telephone = this._telephoneRepository.findById(new BigDecimal(telephoneId));
+            Telephone telephone = this._telephoneRepository.findById(Integer.parseInt(telephoneId));
             telephone.setTelephoneNumber(telephoneNumber);
             telephone.setTelephoneCreationDate(new Date());
             
-            TelephoneType telephoneType = this._telephoneTypeRepository.findById(new BigDecimal(telephoneTypeId));
+            TelephoneType telephoneType = this._telephoneTypeRepository.findById(Integer.parseInt(telephoneTypeId));
             telephone.setTelephoneType(telephoneType);
           
             if(!this._telephoneRepository.update(telephone))
@@ -262,7 +261,7 @@ public class TelephoneController extends HttpServlet implements Serializable
             if(utilities.Utility.isNullOrWhiteSpace(telephoneId))
                 throw new Exception("Empty parameter");
             
-            Telephone telephone = this._telephoneRepository.findById(new BigDecimal(telephoneId));
+            Telephone telephone = this._telephoneRepository.findById(Integer.parseInt(telephoneId));
             
             if(telephone == null)
                 throw new Exception("Telephone not found");
@@ -297,7 +296,7 @@ public class TelephoneController extends HttpServlet implements Serializable
             if(utilities.Utility.isNullOrWhiteSpace(telephoneId))
                 throw new Exception("Empty parameter");
             
-            if(!this._telephoneRepository.deleteById(new BigDecimal(telephoneId)))
+            if(!this._telephoneRepository.deleteById(Integer.parseInt(telephoneId)))
                 throw new Exception("An error has been occurred trying to delete the telephone");
             
             response.setContentType("text/plain");

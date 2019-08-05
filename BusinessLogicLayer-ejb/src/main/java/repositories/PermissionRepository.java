@@ -81,7 +81,7 @@ public class PermissionRepository extends BaseRepository<Permission> implements 
     }
 
     @Override
-    public boolean hasUserPermission(BigDecimal userId, String url)
+    public boolean hasUserPermission(int userId, String url)
     {
         User user = getEntityManager().find(User.class, userId);
             

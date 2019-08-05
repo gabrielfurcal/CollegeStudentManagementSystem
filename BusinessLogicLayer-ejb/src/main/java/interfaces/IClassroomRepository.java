@@ -18,6 +18,6 @@ import models.Classroom;
 @Local
 public interface IClassroomRepository extends IBaseRepository<Classroom>
 {
-    public Classroom findClassroom(BigDecimal classroomId);
+    public Classroom findClassroom(int classroomId);
     public List<Classroom> findClassrooms(Build build);
 }

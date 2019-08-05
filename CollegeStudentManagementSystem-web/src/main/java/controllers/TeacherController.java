@@ -15,7 +15,6 @@ import interfaces.IUserRoleRepository;
 import interfaces.IUserTelephoneRepository;
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -89,42 +88,42 @@ public class TeacherController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreateGet(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                 if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Edit"))
+                 if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditGet(request, response);
             }            
             else if(request.getRequestURI().contains("/Details"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Details"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Details"))
                     throw new Exception("User doesn't have permission");
                 
                 doDetailsGet(request, response);
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeleteGet(request, response);
             }
             else if(request.getRequestURI().contains("/VerifyUsername"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/VerifyUsername"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/VerifyUsername"))
                     throw new Exception("User doesn't have permission");
                 
                 doVerifyUsername(request, response);
             }
             else
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers"))
                     throw new Exception("User doesn't have permission");
                 
                 doIndexGet(request, response);
@@ -155,14 +154,14 @@ public class TeacherController extends HttpServlet implements Serializable
         {
             if(request.getRequestURI().contains("/Create"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Create"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Create"))
                     throw new Exception("User doesn't have permission");
 
                 doCreatePost(request, response);
             }
             else if(request.getRequestURI().contains("/Edit"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Edit"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Edit"))
                     throw new Exception("User doesn't have permission");
                 
                 doEditPost(request, response);
@@ -173,7 +172,7 @@ public class TeacherController extends HttpServlet implements Serializable
             }
             else if(request.getRequestURI().contains("/Delete"))
             {
-                if(!this._permissionRepository.hasUserPermission((BigDecimal)request.getSession(false).getAttribute("userId"), "/Teachers/Delete"))
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Teachers/Delete"))
                     throw new Exception("User doesn't have permission");
                 
                 doDeletePost(request, response);
@@ -272,7 +271,7 @@ public class TeacherController extends HttpServlet implements Serializable
                 Telephone toSaveTelephone = new Telephone();
                 toSaveTelephone.setTelephoneNumber(splittedValues[0]);
                 toSaveTelephone.setTelephoneCreationDate(new Date());
-                toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                 
                 
                 if(!this._telephoneRepository.save(toSaveTelephone))
@@ -311,7 +310,7 @@ public class TeacherController extends HttpServlet implements Serializable
     {
         String teacherId = Utility.isNullOrWhiteSpace(request.getParameter("id")) ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(teacherId));
+        Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(teacherId));
         
         teacher.setUser(this._userRepository.findById(teacher.getTeachersPK().getUserId()));
         
@@ -351,7 +350,7 @@ public class TeacherController extends HttpServlet implements Serializable
             if(Utility.isNullOrWhiteSpace(teacherId))
                 throw new Exception("TeacherId is empty");
             
-            Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(teacherId));
+            Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(teacherId));
             
             if(teacher == null)
                 throw new Exception("Teacher does not exist");
@@ -406,14 +405,14 @@ public class TeacherController extends HttpServlet implements Serializable
                 Telephone toSaveTelephone = null;
                 
                 if(splittedValues.length == 3)
-                    toSaveTelephone = this._telephoneRepository.findTelephone(new BigDecimal(splittedValues[2]), splittedValues[0]);
+                    toSaveTelephone = this._telephoneRepository.findTelephone(Integer.parseInt(splittedValues[2]), splittedValues[0]);
                 
                 if(toSaveTelephone == null)
                 {
                     toSaveTelephone = new Telephone();
                     
                     toSaveTelephone.setTelephoneNumber(splittedValues[0]);
-                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                     toSaveTelephone.setTelephoneCreationDate(new Date());
                     
                     if(!this._telephoneRepository.save(toSaveTelephone))
@@ -422,7 +421,7 @@ public class TeacherController extends HttpServlet implements Serializable
                 else
                 {
                     toSaveTelephone.setTelephoneNumber(splittedValues[0]);
-                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(new BigDecimal(splittedValues[1])));
+                    toSaveTelephone.setTelephoneType(this._telephoneTypeRepository.findById(Integer.parseInt(splittedValues[1])));
                     
                     if(!this._telephoneRepository.update(toSaveTelephone))
                         throw new Exception("An error has occurred updating a telephone");
@@ -468,7 +467,7 @@ public class TeacherController extends HttpServlet implements Serializable
     {
         String teacherId = request.getParameter("id") == null || request.getParameter("id").isEmpty() ? request.getAttribute("id").toString() : request.getParameter("id");
         
-        Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(teacherId));
+        Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(teacherId));
         
         if(teacher == null)
             response.sendRedirect(request.getContextPath() + "/Teachers");
@@ -510,7 +509,7 @@ public class TeacherController extends HttpServlet implements Serializable
             if(Utility.isNullOrWhiteSpace(teacherId))
                 throw new Exception("ID empty");
             
-            Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(teacherId));
+            Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(teacherId));
             
             if(teacher == null)
                 throw new Exception("Teacher not found");
@@ -575,7 +574,7 @@ public class TeacherController extends HttpServlet implements Serializable
             if(Utility.isNullOrWhiteSpace(teacherId))
                 throw new Exception("ID empty");
             
-            Teacher teacher = this._teacherRepository.findTeacher(new BigDecimal(teacherId));
+            Teacher teacher = this._teacherRepository.findTeacher(Integer.parseInt(teacherId));
             
             if(teacher == null)
                 throw new Exception("Teacher not found");

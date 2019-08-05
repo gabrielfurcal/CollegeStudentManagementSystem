@@ -175,6 +175,6 @@ public class Permission implements Serializable
     @Override
     public String toString()
     {
-        return "Permission{" + "permissionId=" + permissionId + ", permissionName=" + permissionName + ", permissionCreationDate=" + permissionCreationDate + ", permissionDescription=" + permissionDescription + ", permissionUrl=" + permissionUrl + ", rolesPermissions=" + rolesPermissions + '}';
+        return "Permission{" + "permissionId=" + permissionId + ", permissionName=" + permissionName + ", permissionCreationDate=" + permissionCreationDate + ", permissionDescription=" + permissionDescription + ", permissionUrl=" + permissionUrl + '}';
     }
 }
