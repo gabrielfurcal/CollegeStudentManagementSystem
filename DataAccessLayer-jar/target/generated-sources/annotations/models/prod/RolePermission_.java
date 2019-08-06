@@ -7,7 +7,7 @@ import models.Permission;
 import models.Role;
 import models.RolePermission;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-05T15:00:36")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-06T10:07:16")
 @StaticMetamodel(RolePermission.class)
 public class RolePermission_ { 
 

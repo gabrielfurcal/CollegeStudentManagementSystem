@@ -259,18 +259,13 @@ public class User implements Serializable
                 Objects.equals(userMotherLastName, user.userMotherLastName) &&
                 Objects.equals(userUsername, user.userUsername) &&
                 Objects.equals(userPassword, user.userPassword) &&
-                Objects.equals(userCreationDate, user.userCreationDate) &&
-                Objects.equals(address, user.address) &&
-                Objects.equals(position, user.position) &&
-                Objects.equals(students, user.students) &&
-                Objects.equals(usersGroups, user.usersGroups) &&
-                Objects.equals(usersRoles, user.usersRoles);
+                Objects.equals(userCreationDate, user.userCreationDate);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(userId, userFirstName, userFatherLastName, userMotherLastName, userUsername, userPassword, userCreationDate, address, position, students, usersGroups, usersRoles);
+        return Objects.hash(userId, userFirstName, userFatherLastName, userMotherLastName, userUsername, userPassword, userCreationDate);
     }
 
     @Override

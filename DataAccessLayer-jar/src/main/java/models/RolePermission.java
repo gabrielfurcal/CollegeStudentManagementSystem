@@ -88,19 +88,17 @@ public class RolePermission implements Serializable
         this.role = role;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        RolePermission that = (RolePermission) o;
-//        return rolePermissionId == that.rolePermissionId &&
-//                Objects.equals(permission, that.permission) &&
-//                Objects.equals(role, that.role);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RolePermission that = (RolePermission) o;
+        return rolePermissionId == that.rolePermissionId;
+    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rolePermissionId, permission, role);
+        return Objects.hash(rolePermissionId);
     }
 
     @Override

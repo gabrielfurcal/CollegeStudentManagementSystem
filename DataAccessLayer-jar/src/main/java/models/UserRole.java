@@ -104,14 +104,12 @@ public class UserRole implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRole userRole = (UserRole) o;
-        return userRoleId == userRole.userRoleId &&
-                Objects.equals(role, userRole.role) &&
-                Objects.equals(user, userRole.user);
+        return userRoleId == userRole.userRoleId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userRoleId, role, user);
+        return Objects.hash(userRoleId);
     }
 
     @Override

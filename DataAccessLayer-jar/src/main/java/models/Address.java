@@ -243,7 +243,7 @@ public class Address implements Serializable
     @Override
     public int hashCode() {
         return Objects.hash(addressId, addressStreetAndNumber, addressNeighborhood, addressSector,
-                addressMunicipality, addressProvince, addressLatitude, addressLongitude, addressCreationDate, campus, users);
+                addressMunicipality, addressProvince, addressLatitude, addressLongitude, addressCreationDate);
     }
 
     @Override
@@ -259,9 +259,7 @@ public class Address implements Serializable
                 Objects.equals(addressProvince, address.addressProvince) &&
                 Objects.equals(addressLatitude, address.addressLatitude) &&
                 Objects.equals(addressLongitude, address.addressLongitude) &&
-                Objects.equals(addressCreationDate, address.addressCreationDate) &&
-                Objects.equals(campus, address.campus) &&
-                Objects.equals(users, address.users);
+                Objects.equals(addressCreationDate, address.addressCreationDate);
     }
 
     @Override

@@ -272,18 +272,13 @@ public class CourseSectionHistorical implements Serializable
                 Objects.equals(courseSectHistDay, that.courseSectHistDay) &&
                 Objects.equals(courseSectHistStartHour, that.courseSectHistStartHour) &&
                 Objects.equals(courseSectHistEndHour, that.courseSectHistEndHour) &&
-                Objects.equals(courseSectHistCreationDate, that.courseSectHistCreationDate) &&
-                Objects.equals(classParticipants, that.classParticipants) &&
-                Objects.equals(classroom, that.classroom) &&
-                Objects.equals(courseSection, that.courseSection) &&
-                Objects.equals(period, that.period) &&
-                Objects.equals(teacher, that.teacher);
+                Objects.equals(courseSectHistCreationDate, that.courseSectHistCreationDate);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(courseSectHistId, courseSectHistPrice, courseSectHistQuota, courseSectHistDay,
-                courseSectHistStartHour, courseSectHistEndHour, courseSectHistCreationDate, classParticipants, classroom, courseSection, period, teacher);
+                courseSectHistStartHour, courseSectHistEndHour, courseSectHistCreationDate);
     }
 
     @Override

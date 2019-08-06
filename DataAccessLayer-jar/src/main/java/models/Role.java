@@ -173,15 +173,12 @@ public class Role implements Serializable
         return roleId == role.roleId &&
                 Objects.equals(roleName, role.roleName) &&
                 Objects.equals(roleCreationDate, role.roleCreationDate) &&
-                Objects.equals(roleDescription, role.roleDescription) &&
-                Objects.equals(groupsRoles, role.groupsRoles) &&
-                Objects.equals(rolesPermissions, role.rolesPermissions) &&
-                Objects.equals(usersRoles, role.usersRoles);
+                Objects.equals(roleDescription, role.roleDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, roleName, roleCreationDate, roleDescription, groupsRoles, rolesPermissions, usersRoles);
+        return Objects.hash(roleId, roleName, roleCreationDate, roleDescription);
     }
 
     @Override

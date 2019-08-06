@@ -49,24 +49,36 @@ function allowNewPasswordField() {
     }
 }
 
-$('#addTelephone').click(function () {
-    let counterTelephoneInputs = document.getElementsByName('telephones').length;
-    let labelCount = document.getElementsByName('telephones').length + 1;
+function addNewTelephone(urlService) {
+    $.ajax({
+       url: urlService,
+       type: 'GET',
+       success: function (data) {
+           let counterTelephoneInputs = document.getElementsByName('telephones').length;
+           let labelCount = document.getElementsByName('telephones').length + 1;
 
-    let telephoneComponent = '<div class="form-group row" id="divTelephone' + counterTelephoneInputs.toString() + '"><label class="col-lg-3 col-md-3 label-control" for="telephone' + counterTelephoneInputs.toString() + '">Telephone ' + labelCount.toString() + '</label><div class="col-xl-7 col-md-6"><select class="form-control select-telephone" id="selectTelephone' + counterTelephoneInputs.toString() + '" style="float: left; margin-right: 5px;"></select><input type="text" class="form-control" id="telephone' + counterTelephoneInputs.toString() + '" name="telephones"/></div><div class="col-xl-2 col-md-3"><input type="button" style="width:100%;" id="btnDeleteTelephone' + counterTelephoneInputs.toString() + '" onclick="deleteTelephoneNoId(\'divTelephone' + counterTelephoneInputs.toString() + '\')" value="Delete" class="btn btn-danger pull-right"/></div></div>';
+           let telephoneComponent = '<div class="form-group row" id="divTelephone' + counterTelephoneInputs.toString() + '"><label class="col-lg-3 col-md-3 label-control" for="telephone' + counterTelephoneInputs.toString() + '">Telephone ' + labelCount.toString() + '</label><div class="col-xl-7 col-md-6"><select class="form-control select-telephone" id="selectTelephone' + counterTelephoneInputs.toString() + '" style="float: left; margin-right: 5px;"></select><input type="text" class="form-control" id="telephone' + counterTelephoneInputs.toString() + '" name="telephones"/></div><div class="col-xl-2 col-md-3"><input type="button" style="width:100%;" id="btnDeleteTelephone' + counterTelephoneInputs.toString() + '" onclick="deleteTelephoneNoId(\'divTelephone' + counterTelephoneInputs.toString() + '\')" value="Delete" class="btn btn-danger pull-right"/></div></div>';
 
-    $('#telephones_form').append(telephoneComponent);
+           $('#telephones_form').append(telephoneComponent);
 
-    let optionsForOthersSelects = '';
+           let optionsForOthersSelects = '';
 
-    $('#selectTelephone0 > option').each(function () {
-        optionsForOthersSelects += '<option value="' + this.value + '">' + this.text + '</option>';
+           $.each(data, function (index, value) {
+               optionsForOthersSelects += '<option value="' + value.telephoneTypeId + '">' + value.telephoneTypeName + '</option>';
+           });
+
+           $('#selectTelephone' + counterTelephoneInputs.toString()).append(optionsForOthersSelects);
+
+           $('input[name="telephones"]').mask("(000) 000-0000");
+       },
+       error: function (data, exception) {
+
+       }
     });
 
-    $('#selectTelephone' + counterTelephoneInputs.toString()).append(optionsForOthersSelects);
 
-    $('input[name="telephones"]').mask("(000) 000-0000");
-});
+
+}
 
 function initMap() {
     let latitude = 0;

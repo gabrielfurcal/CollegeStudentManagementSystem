@@ -105,13 +105,12 @@ public class ClassParticipant implements Serializable
         if (o == null || getClass() != o.getClass()) return false;
         ClassParticipant that = (ClassParticipant) o;
         return classParticipantId == that.classParticipantId &&
-                Objects.equals(courseSectHist, that.courseSectHist) &&
-                Objects.equals(student, that.student);
+                Objects.equals(courseSectHist, that.courseSectHist);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(classParticipantId, courseSectHist, student);
+        return Objects.hash(classParticipantId, courseSectHist);
     }
 
     @Override

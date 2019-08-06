@@ -9,7 +9,7 @@ import models.Address;
 import models.Campus;
 import models.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-05T14:28:09")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-06T10:07:16")
 @StaticMetamodel(Address.class)
 public class Address_ { 
 

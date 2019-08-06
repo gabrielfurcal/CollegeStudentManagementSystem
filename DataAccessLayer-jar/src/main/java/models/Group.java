@@ -160,14 +160,12 @@ public class Group implements Serializable
         return groupId == group.groupId &&
                 Objects.equals(groupName, group.groupName) &&
                 Objects.equals(groupCreationDate, group.groupCreationDate) &&
-                Objects.equals(groupDescription, group.groupDescription) &&
-                Objects.equals(usersGroups, group.usersGroups) &&
-                Objects.equals(groupsRoles, group.groupsRoles);
+                Objects.equals(groupDescription, group.groupDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupId, groupName, groupCreationDate, groupDescription, usersGroups, groupsRoles);
+        return Objects.hash(groupId, groupName, groupCreationDate, groupDescription);
     }
 
     @Override

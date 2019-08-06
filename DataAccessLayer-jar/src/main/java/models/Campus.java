@@ -147,14 +147,12 @@ public class Campus implements Serializable
         Campus campus = (Campus) o;
         return campusId == campus.campusId &&
                 Objects.equals(campusName, campus.campusName) &&
-                Objects.equals(campusCreationDate, campus.campusCreationDate) &&
-                Objects.equals(builds, campus.builds) &&
-                Objects.equals(address, campus.address);
+                Objects.equals(campusCreationDate, campus.campusCreationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(campusId, campusName, campusCreationDate, builds, address);
+        return Objects.hash(campusId, campusName, campusCreationDate);
     }
 
     @Override

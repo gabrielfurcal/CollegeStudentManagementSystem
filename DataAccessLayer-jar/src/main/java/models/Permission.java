@@ -140,7 +140,7 @@ public class Permission implements Serializable
 
     public void setPermissionUrl(String permissionUrl)
     {
-        this.permissionUrl = permissionUrl;
+        this.permissionUrl = permissionUrl.toUpperCase();
     }
     
     @XmlTransient
@@ -163,13 +163,12 @@ public class Permission implements Serializable
                 Objects.equals(permissionName, that.permissionName) &&
                 Objects.equals(permissionCreationDate, that.permissionCreationDate) &&
                 Objects.equals(permissionDescription, that.permissionDescription) &&
-                Objects.equals(permissionUrl, that.permissionUrl) &&
-                Objects.equals(rolesPermissions, that.rolesPermissions);
+                Objects.equals(permissionUrl, that.permissionUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(permissionId, permissionName, permissionCreationDate, permissionDescription, permissionUrl, rolesPermissions);
+        return Objects.hash(permissionId, permissionName, permissionCreationDate, permissionDescription, permissionUrl);
     }
 
     @Override

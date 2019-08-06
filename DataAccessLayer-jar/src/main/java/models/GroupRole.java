@@ -104,14 +104,12 @@ public class GroupRole implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GroupRole groupRole = (GroupRole) o;
-        return groupRoleId == groupRole.groupRoleId &&
-                Objects.equals(group, groupRole.group) &&
-                Objects.equals(role, groupRole.role);
+        return groupRoleId == groupRole.groupRoleId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupRoleId, group, role);
+        return Objects.hash(groupRoleId);
     }
 
     @Override

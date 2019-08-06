@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import models.Telephone;
 import models.TelephoneType;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-05T14:28:09")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-06T10:07:16")
 @StaticMetamodel(TelephoneType.class)
 public class TelephoneType_ { 
 

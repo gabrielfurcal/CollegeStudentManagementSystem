@@ -100,14 +100,12 @@ public class UserTelephone implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserTelephone that = (UserTelephone) o;
-        return userTelephoneId == that.userTelephoneId &&
-                Objects.equals(telephone, that.telephone) &&
-                Objects.equals(user, that.user);
+        return userTelephoneId == that.userTelephoneId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userTelephoneId, telephone, user);
+        return Objects.hash(userTelephoneId);
     }
 
     @Override

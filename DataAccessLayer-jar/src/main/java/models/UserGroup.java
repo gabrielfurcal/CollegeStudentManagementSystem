@@ -47,11 +47,11 @@ public class UserGroup implements Serializable
     @Column(name = "USER_GROUP_ID")
     private int userGroupId;
     
-    @JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")
+    @JoinColumn(name = "GROUP_NAME", referencedColumnName = "GROUP_NAME")
     @ManyToOne(optional = false)
     private Group group;
     
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_USERNAME", referencedColumnName = "USER_USERNAME")
     @ManyToOne(optional = false)
     private User user;
 
@@ -104,14 +104,12 @@ public class UserGroup implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserGroup userGroup = (UserGroup) o;
-        return userGroupId == userGroup.userGroupId &&
-                Objects.equals(group, userGroup.group) &&
-                Objects.equals(user, userGroup.user);
+        return userGroupId == userGroup.userGroupId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userGroupId, group, user);
+        return Objects.hash(userGroupId);
     }
 
     @Override

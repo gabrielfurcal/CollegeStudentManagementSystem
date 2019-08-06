@@ -134,13 +134,12 @@ public class TelephoneType implements Serializable
         TelephoneType that = (TelephoneType) o;
         return telephoneTypeId == that.telephoneTypeId &&
                 Objects.equals(telephoneTypeName, that.telephoneTypeName) &&
-                Objects.equals(telephoneTypeCreationDate, that.telephoneTypeCreationDate) &&
-                Objects.equals(telephones, that.telephones);
+                Objects.equals(telephoneTypeCreationDate, that.telephoneTypeCreationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(telephoneTypeId, telephoneTypeName, telephoneTypeCreationDate, telephones);
+        return Objects.hash(telephoneTypeId, telephoneTypeName, telephoneTypeCreationDate);
     }
 
     @Override

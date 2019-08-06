@@ -132,13 +132,12 @@ public class Email implements Serializable
         Email email = (Email) o;
         return emailId == email.emailId &&
                 Objects.equals(emailText, email.emailText) &&
-                Objects.equals(emailCreationDate, email.emailCreationDate) &&
-                Objects.equals(user, email.user);
+                Objects.equals(emailCreationDate, email.emailCreationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(emailId, emailText, emailCreationDate, user);
+        return Objects.hash(emailId, emailText, emailCreationDate);
     }
 
     @Override

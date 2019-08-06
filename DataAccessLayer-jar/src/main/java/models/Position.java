@@ -152,13 +152,12 @@ public class Position implements Serializable
         return positionId == position.positionId &&
                 Objects.equals(positionName, position.positionName) &&
                 Objects.equals(positionDescription, position.positionDescription) &&
-                Objects.equals(positionCreationDate, position.positionCreationDate) &&
-                Objects.equals(users, position.users);
+                Objects.equals(positionCreationDate, position.positionCreationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(positionId, positionName, positionDescription, positionCreationDate, users);
+        return Objects.hash(positionId, positionName, positionDescription, positionCreationDate);
     }
 
     @Override

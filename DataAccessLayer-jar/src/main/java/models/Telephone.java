@@ -151,14 +151,12 @@ public class Telephone implements Serializable
         Telephone telephone = (Telephone) o;
         return telephoneId == telephone.telephoneId &&
                 Objects.equals(telephoneNumber, telephone.telephoneNumber) &&
-                Objects.equals(telephoneCreationDate, telephone.telephoneCreationDate) &&
-                Objects.equals(usersTelephones, telephone.usersTelephones) &&
-                Objects.equals(telephoneType, telephone.telephoneType);
+                Objects.equals(telephoneCreationDate, telephone.telephoneCreationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(telephoneId, telephoneNumber, telephoneCreationDate, usersTelephones, telephoneType);
+        return Objects.hash(telephoneId, telephoneNumber, telephoneCreationDate);
     }
 
     @Override

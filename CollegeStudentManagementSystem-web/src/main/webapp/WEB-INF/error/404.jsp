@@ -3,7 +3,7 @@
     Created on : Oct 1, 2018, 4:32:35 PM
     Author     : Gabriel_Liberato
 --%>
-
+<%@page import="java.util.Calendar" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -61,7 +61,7 @@
                   </div>
                   <div class="card-footer bg-transparent">
                     <div class="row">
-                      <p class="text-muted text-center col-12 py-1">© 2018 <a href="#">College Student Management System </a> Copyright &copy; 2018, All rights reserved</p>
+                      <p class="text-muted text-center col-12 py-1">© <%= java.util.Calendar.getInstance().get(Calendar.YEAR) %> <a href="#">College Student Management System </a> Copyright &copy; 2018, All rights reserved</p>
                     </div>
                   </div>
                 </div>

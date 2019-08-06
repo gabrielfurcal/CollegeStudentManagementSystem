@@ -12,7 +12,7 @@
         
         <c:if test="${isCurrentPeriodExist != null}">
             <div class="alert alert-warning">
-                The current period hasn't been created <a href="http://localhost:8081${pageContext.servletContext.contextPath}/Periods/Create" style="line-height: 0px;">Create period</a>
+                The current period hasn't been created <a href="http://localhost:8080${pageContext.servletContext.contextPath}/Periods/Create" style="line-height: 0px;">Create period</a>
             </div>
         </c:if>  
         

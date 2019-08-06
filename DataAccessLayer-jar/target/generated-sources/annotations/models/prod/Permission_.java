@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import models.Permission;
 import models.RolePermission;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-05T14:28:09")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-06T16:22:30")
 @StaticMetamodel(Permission.class)
 public class Permission_ { 
 

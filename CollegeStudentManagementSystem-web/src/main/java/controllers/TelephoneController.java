@@ -28,7 +28,7 @@ import models.TelephoneType;
  * @author Gabriel_Liberato
  * This is an Rest API Servlet
  */
-@WebServlet(name = "TelephoneController", urlPatterns ={"/Telephones", "/Telephones/Create", "/Telephones/Edit", "/Telephones/Details", "/Telephones/Delete"})
+@WebServlet(name = "TelephoneController", urlPatterns ={"/Telephones", "/Telephones/Create", "/Telephones/Edit", "/Telephones/Details", "/Telephones/Delete", "/Telephones/Types"})
 public class TelephoneController extends HttpServlet implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -38,10 +38,7 @@ public class TelephoneController extends HttpServlet implements Serializable
     
     @Inject
     private ITelephoneTypeRepository _telephoneTypeRepository;
-    
-    @Inject
-    private IUserTelephoneRepository _userTelephoneRepository;
-    
+
     @Inject
     private IPermissionRepository _permissionRepository;
     
@@ -78,6 +75,13 @@ public class TelephoneController extends HttpServlet implements Serializable
             else if(request.getRequestURI().contains("/Delete"))
             {
                 response.sendError(404);
+            }
+            else if(request.getRequestURI().contains("/Types"))
+            {
+                if(!this._permissionRepository.hasUserPermission((int)request.getSession(false).getAttribute("userId"), "/Telephones/Types"))
+                    throw new Exception("User doesn't have permission");
+
+                doTypesGet(request, response);
             }
             else
             {
@@ -307,6 +311,44 @@ public class TelephoneController extends HttpServlet implements Serializable
         {
             if(ex.getMessage() == "Empty parameters")
                 response.sendError(400);
+            else
+                response.sendError(500);
+        }
+    }
+
+    private void doTypesGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        String servletResponse = "";
+
+        try
+        {
+            List<TelephoneType> telephoneTypes = _telephoneTypeRepository.findAll();
+
+            if(telephoneTypes == null)
+            {
+                throw new Exception("Telephone Types not found");
+            }
+            else if(telephoneTypes.size() == 0)
+            {
+                throw new Exception("Telephone Types not found");
+            }
+
+            for (TelephoneType telephoneType : telephoneTypes)
+            {
+                telephoneType.setTelephones(null);
+            }
+
+            servletResponse = new Gson().toJson(telephoneTypes);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(servletResponse);
+        }
+        catch (Exception ex)
+        {
+            if(ex.getMessage().toUpperCase().contains("NOT FOUND"))
+                response.sendError(404);
             else
                 response.sendError(500);
         }
